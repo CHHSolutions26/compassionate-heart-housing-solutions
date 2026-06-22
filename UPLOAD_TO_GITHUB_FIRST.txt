@@ -1,0 +1,6 @@
+1. Unzip this folder.
+2. Open your GitHub repository.
+3. Click Add file > Upload files.
+4. Drag every file and folder from this unzipped folder into GitHub.
+5. Click Commit changes.
+6. Connect the repository to Render as a Web Service.
