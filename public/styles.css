@@ -132,4 +132,9 @@ select{
     text-align:center;
     padding:90px 30px;
 }
-
+.form-step{
+    display:none;
+}
+.form-step.active{
+    display:block;
+}
