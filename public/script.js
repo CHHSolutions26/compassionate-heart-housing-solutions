@@ -1,55 +1,43 @@
-Skip to content
-CHHSolutions26
-compassionate-heart-housing-solutions
-Repository navigation
-Code
-Issues
-Pull requests
-Agents
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Files
-Go to file
-t
-T
-public
-README.md
-UPLOAD_TO_GITHUB_FIRST.txt
-admin.html
-index.html
-logo.jpeg
-package.json
-robots.txt
-script.js
-server.js
-sitemap.xml
-styles.css
-compassionate-heart-housing-solutions
-/
-styles.css
-in
-main
+let currentStep = 0;
+const steps = () => [...document.querySelectorAll('.form-step')];
+const dots = () => [...document.querySelectorAll('.step-dot')];
+function showStep(n){ steps().forEach((s,i)=>s.classList.toggle('active',i===n)); dots().forEach((d,i)=>d.classList.toggle('active',i<=n)); currentStep=n; window.scrollTo({top:0,behavior:'smooth'}); }
+function nextStep(){ if(currentStep < steps().length-1) showStep(currentStep+1); }
+function prevStep(){ if(currentStep>0) showStep(currentStep-1); }
 
-Edit
+let signaturePad, canvas;
+function resizeCanvas(){ if(!canvas) return; const ratio=Math.max(window.devicePixelRatio||1,1); const rect=canvas.getBoundingClientRect(); canvas.width=rect.width*ratio; canvas.height=190*ratio; const ctx=canvas.getContext('2d'); ctx.scale(ratio,ratio); ctx.lineWidth=2; ctx.lineCap='round'; ctx.strokeStyle='#0B2E63'; }
+function initSignature(){ canvas=document.getElementById('signatureCanvas'); if(!canvas) return; resizeCanvas(); let drawing=false; const pos=e=>{ const r=canvas.getBoundingClientRect(); const p=e.touches?e.touches[0]:e; return {x:p.clientX-r.left,y:p.clientY-r.top};}; const start=e=>{drawing=true; const p=pos(e); const c=canvas.getContext('2d'); c.beginPath(); c.moveTo(p.x,p.y); e.preventDefault();}; const move=e=>{if(!drawing)return; const p=pos(e); const c=canvas.getContext('2d'); c.lineTo(p.x,p.y); c.stroke(); e.preventDefault();}; const end=()=>drawing=false; canvas.addEventListener('mousedown',start); canvas.addEventListener('mousemove',move); window.addEventListener('mouseup',end); canvas.addEventListener('touchstart',start,{passive:false}); canvas.addEventListener('touchmove',move,{passive:false}); canvas.addEventListener('touchend',end); }
+function clearSignature(){ if(canvas) canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height); }
 
-Preview
-Indent mode
+async function submitForm(e){ e.preventDefault(); const form=e.target; const sig=document.getElementById('signatureData'); if(canvas&&sig) sig.value=canvas.toDataURL('image/png'); const data=new FormData(form); const btn=form.querySelector('button[type="submit"]'); if(btn) {btn.disabled=true; btn.textContent='Submitting...';}
+ try{ const res=await fetch('/api/submit',{method:'POST',body:data}); const json=await res.json(); if(!res.ok||!json.ok) throw new Error(json.error||'Submission failed'); document.getElementById('formResult').innerHTML=`<div class="notice"><strong>Submitted successfully.</strong><br>Your confirmation number is ${json.id}.</div>`; form.reset(); clearSignature(); showStep(0); } catch(err){ document.getElementById('formResult').innerHTML=`<div class="notice"><strong>Error:</strong> ${err.message}</div>`; } finally{ if(btn){btn.disabled=false; btn.textContent='Submit Application';} } }
 
-Spaces
-Indent size
+document.addEventListener('DOMContentLoaded',()=>{ initSignature(); const form=document.getElementById('applicationForm'); if(form) form.addEventListener('submit',submitForm); });
+let currentStep = 0;
+const steps = document.querySelectorAll(".form-step);
 
-2
-Line wrap mode
-
-No wrap
-Editing styles.css file contents
-  1
-  2
-:root{--navy:#0B2E63;--rose:#C76A9A;--rose2:#E8B7C9;--sage:#A8B39A;--cream:#fffaf8;--ink:#1d2633;--muted:#64748b;--card:#ffffff;--shadow:0 18px 45px rgba(11,46,99,.14)}*{box-sizing:border-box}body{margin:0;font-family:Poppins,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;color:var(--navy);line-height:1.15}a{color:inherit;text-decoration:none}.topbar{background:var(--navy);color:white;text-align:center;padding:.55rem 1rem;font-size:.92rem}.nav{position:sticky;top:0;z-index:20;background:white;box-shadow:0 2px 14px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;padding:.75rem 5vw}.brand{display:flex;gap:.75rem;align-items:center;font-weight:800;color:var(--navy)}.brand img{height:58px;width:58px;object-fit:contain;border-radius:50%}.brand span{display:block}.brand small{display:block;color:var(--rose);font-weight:600}.links{display:flex;gap:1rem;align-items:center}.links a{font-weight:700;color:var(--navy)}.btn{display:inline-block;border:0;border-radius:999px;padding:.85rem 1.3rem;font-weight:800;background:var(--rose);color:white;cursor:pointer;box-shadow:0 8px 18px rgba(199,106,154,.28)}.btn.secondary{background:var(--navy)}.btn.light{background:white;color:var(--navy)}.hero{min-height:82vh;display:grid;place-items:center;padding:5rem 5vw;background:linear-gradient(rgba(11,46,99,.74),rgba(11,46,99,.62)),url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=80') center/cover;color:white;text-align:center}.hero img{width:min(360px,82vw);background:rgba(255,255,255,.94);border-radius:24px;padding:1rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}.hero h1{font-size:clamp(2.2rem,6vw,4.6rem);color:white;margin:.25rem 0}.hero p{font-size:clamp(1.05rem,2.1vw,1.45rem);max-width:860px;margin:1rem auto 1.5rem}.section{padding:4.5rem 5vw}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.card{background:var(--card);border-radius:22px;padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(11,46,99,.08)}.card h3{margin-top:0}.accent{color:var(-
-
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
-
+function  showStep(index){
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+}
+document.querySelectorAll("next-step").forEach(button => {
+  button.addEventListener("click", () => {
+    if(currentStep < steps.length -1){
+      currentStep++;
+      showStep(currentStep);
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+  });
+});
+document.querySelectorAll(".prev-step").forEach(button => {
+  button.addEventListener("click", () => {
+    if(currentStep > 0){
+      currentStep--;
+      showStep(currentStep);
+      window.scrollTo({top:0,  behavior:"smooth"});
+    }
+  });
+});
+showStep(currentStep);
