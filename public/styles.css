@@ -5,29 +5,20 @@ body{
     color:#222;
 }
 
-.nav{
+.header-banner{
+    width:100%;
     background:#ffffff;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
+    text-align:center;
+    padding:0;
 }
 
-.brand{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    color:#1d2b7b;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:24px;
+.header-banner img{
+    width:100%;
+    max-height:250px;
+    object-fit:contain;
+    display:block;
+    margin:auto;
 }
-
-.brand img{
-    width:80px;
-    height:80px;
-    border-radius:50%;
 }
 
 .links a{
