@@ -40,4 +40,4 @@ document.querySelectorAll(".prev-step").forEach(button => {
     }
   });
 });
-showStep(currentStep);
+showStep(currentStep);r
