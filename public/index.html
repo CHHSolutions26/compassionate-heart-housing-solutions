@@ -1,1 +1,85 @@
+Skip to content
+CHHSolutions26
+compassionate-heart-housing-solutions
+Repository navigation
+Code
+Issues
+Pull requests
+Agents
+Actions
+Projects
+Wiki
+Security and quality
+Insights
+Settings
+Files
+Go to file
+t
+T
+public
+README.md
+UPLOAD_TO_GITHUB_FIRST.txt
+admin.html
+index.html
+logo.jpeg
+package.json
+robots.txt
+script.js
+server.js
+sitemap.xml
+styles.css
+compassionate-heart-housing-solutions
+/
+index.html
+in
+main
 
+Edit
+
+Preview
+Indent mode
+
+Spaces
+Indent size
+
+2
+Line wrap mode
+
+No wrap
+Editing index.html file contents
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Compassionate Heart Housing Solutions</title><meta name="description" content="Safe, supportive, compassionate housing solutions with online applications, referrals, and intake forms."><link rel="stylesheet" href="/styles.css"></head><body>
+<div class="topbar">Call (414) 397-3146 • Email info@compassionatehearthousingsolutions.com</div>
+<header class="nav"><a class="brand" href="/"><img src="/images/logo.jpeg" alt="Compassionate Heart Housing Solutions logo"><span>Compassionate Heart<small>Housing Solutions</small></span></a><nav class="links"><a href="#about">About</a><a href="#services">Services</a><a href="#apply">Apply</a><a href="#contact">Contact</a><a class="btn" href="#apply">Apply Here</a></nav></header>
+<section class="hero"><div><img src="/images/logo.jpeg" alt="Compassionate Heart Housing Solutions"><h1>Housing with Compassion, Hope, and Stability</h1><p>Providing safe, supportive, and stable housing solutions for individuals seeking dignity, independence, and a fresh start.</p><a class="btn" href="#apply">Start Housing Application</a> <a class="btn light" href="#contact">Contact Us</a></div></section>
+<section id="about" class="section split"><div><h2>Our Mission</h2><p><strong>Compassionate Heart Housing Solutions</strong> is committed to providing safe, supportive, and compassionate housing opportunities that empower individuals to achieve stability, independence, and an improved quality of life.</p><p>We believe every person deserves access to a secure and welcoming environment where they are treated with dignity, respect, and understanding. Through personalized support, community partnerships, and a heart-centered approach, we help individuals build a foundation for long-term success.</p></div><div class="panel"><h3>Who We Serve</h3><ul class="list"><li>Adults seeking stable shared housing</li><li>Veterans needing supportive housing connections</li><li>Seniors needing safe placement options</li><li>Individuals transitioning from homelessness</li><li>Case managers and referral partners</li></ul></div></section>
+<section id="services" class="section"><h2>Housing Services</h2><div class="grid"><div class="card"><h3>Shared Housing Placement</h3><p>Application screening, intake support, and placement review for shared or independent living options.</p></div><div class="card"><h3>Referral Coordination</h3><p>Simple referral process for case managers, families, agencies, and community partners.</p></div><div class="card"><h3>Supportive Intake</h3><p>Collect income source, housing needs, emergency contact information, consent, and signed forms online.</p></div></div></section>
+<section id="apply" class="section"><div class="form-wrap"><h2>Housing Application & Pre-Screening</h2><p>Complete the secure online application below. Fields marked required should be completed before submission.</p><div class="steps"><span class="step-dot active"></span><span class="step-dot"></span><span class="step-dot"></span><span class="step-dot"></span><span class="step-dot"></span></div>
+<form id="applicationForm" enctype="multipart/form-data"><input type="hidden" name="formType" value="Housing Application"><input type="hidden" id="signatureData" name="signatureData">
+<div class="form-step active"><h3>Step 1: Applicant Information</h3><div class="fields"><div><label>Full Name *</label><input class="input" name="fullName" required></div><div><label>Date of Birth</label><input class="input" type="date" name="dateOfBirth"></div><div><label>Phone *</label><input class="input" name="phone" required></div><div><label>Email</label><input class="input" type="email" name="email"></div><div><label>Current City/State</label><input class="input" name="currentLocation"></div><div><label>Preferred Move-In Date</label><input class="input" type="date" name="moveInDate"></div></div><div class="form-actions"><span></span><button class="btn" type="button" onclick="nextStep()">Next</button></div></div>
+<div class="form-step"><h3>Step 2: Income & Eligibility</h3><label>What is your source of income?</label><div class="checkgrid"><label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label><label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label><label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label><label><input type="checkbox" name="incomeSource" value="Other"> Other</label></div><div class="fields"><div><label>Approximate Monthly Income</label><input class="input" name="monthlyIncome"></div><div><label>Can you provide proof of income?</label><select name="proofOfIncome"><option>Yes</option><option>No</option><option>Need assistance</option></select></div></div><div class="form-actions"><button class="btn secondary" type="button" onclick="prevStep()">Back</button><button class="btn" type="button" onclick="nextStep()">Next</button></div></div>
+<div class="form-step"><h3>Step 3: Housing Needs</h3><div class="fields"><div><label>Current Housing Status</label><select name="housingNeed"><option>Currently housed</option><option>Unstable housing</option><option>Homeless</option><option>Hospital/Facility discharge</option><option>Other</option></select></div><div><label>Urgency Level</label><select name="status"><option>Routine</option><option>Soon</option><option>Urgent</option></select></div></div><label>Describe your housing needs</label><textarea name="housingDescription"></textarea><label>Important notes, accommodations, or barriers</label><textarea name="notes"></textarea><div class="form-actions"><button class="btn secondary" type="button" onclick="prevStep()">Back</button><button class="btn" type="button" onclick="nextStep()">Next</button></div></div>
+<div class="form-step"><h3>Step 4: Emergency Contact / Referral</h3><div class="fields"><div><label>Emergency Contact Name</label><input class="input" name="emergencyContact"></div><div><label>Emergency Contact Phone</label><input class="input" name="emergencyPhone"></div><div><label>Case Manager / Referrer Name</label><input class="input" name="caseManagerName"></div><div><label>Case Manager / Referrer Email</label><input class="input" type="email" name="caseManagerEmail"></div></div><label>Upload documents if available</label><input class="input" type="file" name="documents" multiple><div class="form-actions"><button class="btn secondary" type="button" onclick="prevStep()">Back</button><button class="btn" type="button" onclick="nextStep()">Next</button></div></div>
+<div class="form-step"><h3>Step 5: Consent & Electronic Signature</h3><div class="notice"><p>By signing below, I certify that the information provided is true and I authorize Compassionate Heart Housing Solutions to review this application and contact me or my referral contact regarding housing options.</p></div><label><input type="checkbox" required name="consent" value="Agreed"> I agree and consent to submit this application electronically.</label><label>Date Signed *</label><input class="input" type="date" name="dateSigned" required><label>Applicant Signature *</label><canvas id="signatureCanvas"></canvas><button class="btn secondary" type="button" onclick="clearSignature()">Clear Signature</button><div class="form-actions"><button class="btn secondary" type="button" onclick="prevStep()">Back</button><button class="btn" type="submit">Submit Application</button></div></div>
+</form><div id="formResult"></div></div></section>
+<section id="contact" class="section cta"><h2>Contact Compassionate Heart Housing Solutions</h2><p>Phone: (414) 397-3146<br>Email: info@compassionatehearthousingsolutions.com</p><a class="btn light" href="mailto:info@compassionatehearthousingsolutions.com">Email Us</a></section>
+<footer class="footer"><div class="footer-grid"><div><h3>Compassionate Heart Housing Solutions</h3><p>Providing compassionate housing solutions for seniors, veterans, and individuals experiencing homelessness.</p></div><div><h3>Quick Links</h3><a href="#about">About</a><a href="#services">Services</a><a href="#apply">Apply</a></div><div><h3>Contact</h3><a href="tel:14143973146">(414) 397-3146</a><a href="mailto:info@compassionatehearthousingsolutions.com">info@compassionatehearthousingsolutions.com</a></div></div></footer><script src="/script.js"></script></body></html>
+
+Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
+ 
