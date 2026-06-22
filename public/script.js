@@ -22,7 +22,7 @@ function  showStep(index){
     step.classList.toggle("active", i === index);
   });
 }
-document.querySelectorAll("next-step").forEach(button => {
+document.querySelectorAll(".next-step").forEach(button => {
   button.addEventListener("click", () => {
     if(currentStep < steps.length -1){
       currentStep++;
@@ -40,4 +40,4 @@ document.querySelectorAll(".prev-step").forEach(button => {
     }
   });
 });
-showStep(currentStep);r
+showStep(currentStep);
