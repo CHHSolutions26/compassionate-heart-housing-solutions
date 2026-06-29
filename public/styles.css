@@ -82,19 +82,17 @@ body{
 
 /* Hero */
 
-.hero{
-  min-height:620px;
-  background:
-    linear-gradient(rgba(13,31,124,.68),rgba(127,90,240,.55)),
-    url("/images/hero-banner.png");
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:var(--white);
-  padding:80px 24px;
+.hero {
+    background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url("images/hero-banner.png") center center / cover no-repeat;
+
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
 
 .hero-content{
