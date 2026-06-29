@@ -8,205 +8,238 @@
 </head>
 <body>
 
-<<header class="header-banner">
-    <img src="/logo.jpeg" alt="Compassionate Heart Housing Solutions">
-</header>
+<header class="site-header">
+  <div class="header-inner">
+    <img src="/logo.jpeg" alt="Compassionate Heart Housing Solutions Logo" class="main-logo">
 
-
-  <nav class="links">
-    <a href="#home>Home</a>
-    <a href="#services">Services</a>
-    <a href="#apply">Apply</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#apply">Apply</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <section id="home" class="hero">
-  <h1>Housing with Compassion, Hope, and Stability</h1>
-  <p>Safe, supportive housing solutions for seniors, veterans, and individuals seeking stability.</p>
-  <a class="btn" href="#apply">Start Housing Application</a>
+  <div class="hero-overlay">
+    <h1>Compassionate Heart Housing Solutions</h1>
+    <p>Housing with Compassion, Hope, and Stability</p>
+    <div class="hero-buttons">
+      <a href="#apply" class="btn">Start Application</a>
+      <a href="#contact" class="btn secondary">Contact Us</a>
+    </div>
+  </div>
 </section>
 
-<section class="feature-cards">
-  <h2>Supportive Housing Options</h2>
+<section id="about" class="section mission-section">
+  <div class="split">
+    <div>
+      <h2>Our Mission</h2>
+      <p>
+        Compassionate Heart Housing Solutions is committed to providing safe, supportive,
+        and compassionate housing opportunities that empower individuals to achieve
+        stability, independence, and an improved quality of life.
+      </p>
+      <p>
+        We believe every person deserves access to a secure and welcoming environment
+        where they are treated with dignity, respect, and understanding.
+      </p>
+    </div>
 
-  <div class="card-row">
-    <a class="service-card" href="#services">
-      <img src="/images/shared-housing.jpg">
-      <h3>Shared Housing</h3>
-      <p>Safe and stable shared living options.</p>
-    </a>
+    <img src="/images/mission.jpg" alt="Our Mission" class="section-img">
+  </div>
+</section>
 
-    <a class="service-card" href="#services">
-      <img src="/images/intake.jpg">
+<section id="services" class="section">
+  <h2>Our Services</h2>
+  <p class="section-intro">Supportive housing services designed to help individuals move toward stability.</p>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <img src="/images/shared-housing.jpg" alt="Shared Housing">
+      <h3>Shared Housing Placement</h3>
+      <p>Safe and supportive shared housing options for individuals needing stable living arrangements.</p>
+      <a href="#shared-housing" class="card-link">Learn More</a>
+    </div>
+
+    <div class="service-card">
+      <img src="/images/supportive-intake.jpg" alt="Supportive Intake">
       <h3>Supportive Intake</h3>
-      <p>Pre-screening, housing needs, and eligibility review.</p>
-    </a>
+      <p>We collect housing needs, income details, emergency contacts, and referral information.</p>
+      <a href="#supportive-intake" class="card-link">Learn More</a>
+    </div>
 
-    <a class="service-card" href="#contact">
-      <img src="/images/referral.jpg">
+    <div class="service-card">
+      <img src="/images/referral-coordination.jpg" alt="Referral Coordination">
       <h3>Referral Coordination</h3>
-      <p>Support for families, case managers, and agencies.</p>
-    </a>
+      <p>Referral support for case managers, agencies, families, and community partners.</p>
+      <a href="#referral" class="card-link">Learn More</a>
+    </div>
+  </div>
+</section>
+<section id="shared-housing" class="section detail-section">
+  <div class="split reverse">
+    <img src="/images/shared-housing.jpg" class="section-img" alt="Shared Housing">
+    <div>
+      <h2>Shared Housing Placement</h2>
+      <p>We help connect individuals with safe, stable, and supportive shared housing options.</p>
+    </div>
   </div>
 </section>
 
-<section id="about" class="info-section">
-  <div>
-    <h2>Our Mission</h2>
-    <p>Compassionate Heart Housing Solutions is committed to providing safe, supportive, and compassionate housing opportunities that empower individuals to achieve stability, independence, and improved quality of life.</p>
+<section id="supportive-intake" class="section detail-section">
+  <div class="split">
+    <div>
+      <h2>Supportive Intake</h2>
+      <p>Our intake process helps identify housing needs, income source, support needs, and referral information.</p>
+    </div>
+    <img src="/images/supportive-intake.jpg" class="section-img" alt="Supportive Intake">
   </div>
 </section>
 
-<section id="services" class="info-section split">
-  <div>
-    <h2>An Abundance of Support</h2>
-    <ul>
-      <li>Shared housing placement</li>
-      <li>Supportive intake</li>
-      <li>Referral coordination</li>
-      <li>Veteran and senior housing support</li>
-      <li>Homelessness support and pre-screening</li>
-    </ul>
+<section id="referral" class="section detail-section">
+  <div class="split reverse">
+    <img src="/images/referral-coordination.jpg" class="section-img" alt="Referral Coordination">
+    <div>
+      <h2>Referral Coordination</h2>
+      <p>We work with case managers, families, agencies, and community partners to coordinate housing referrals.</p>
+    </div>
   </div>
-  <img src="/images/services.jpg">
 </section>
+
+<section class="section support-section">
+  <div class="split">
+    <div>
+      <h2>Why Choose Compassionate Heart?</h2>
+      <ul>
+        <li>Safe and supportive housing options</li>
+        <li>Compassionate intake and referral support</li>
+        <li>Support for seniors, veterans, and individuals experiencing homelessness</li>
+        <li>Community-focused housing solutions</li>
+      </ul>
+    </div>
+    <img src="/images/support.jpg" class="section-img" alt="Support Section">
+  </div>
+</section>
+
+<section id="apply" class="section application-section">
+  <div class="form-wrap">
+    <h2>Housing Application & Pre-Screening</h2>
+    <p>Complete the housing application below. Fields marked with * are required.</p>
+
     <form id="applicationForm" enctype="multipart/form-data">
-     <div class="form-step active">
-      <h3>Step 1: Applicant Information</h3>
-      <label>Full Name *</label>
-      <input class="input" name="fullName" required>
+      <div class="form-step active">
+        <h3>Step 1: Applicant Information</h3>
 
-      <label>Date of Birth</label>
-      <input class="input" type="date" name="dateOfBirth">
+        <label>Full Name *</label>
+        <input class="input" name="fullName" required>
 
-      <label>Phone *</label>
-      <input class="input" name="phone" required>
+        <label>Date of Birth</label>
+        <input class="input" type="date" name="dateOfBirth">
 
-      <label>Email</label>
-      <input class="input" type="email" name="email">
+        <label>Phone *</label>
+        <input class="input" name="phone" required>
 
-      <label>Current City/State</label>
-      <input class="input" name="currentLocation">
+        <label>Email</label>
+        <input class="input" type="email" name="email">
 
-      <label>Preferred Move-In Date</label>
-      
-      <input class="input" type="date" name="moveInDate">
+        <label>Current City/State</label>
+        <input class="input" name="currentLocation">
+
+        <label>Preferred Move-In Date</label>
+        <input class="input" type="date" name="moveInDate">
+
         <div class="button-group">
-         <button type="button" class="form-btn next-step">Next</button>
-       </div>
-     </div>
-     <div class="form-step">
-      <h3>Step 2: Income & Eligibility</h3>
-      <label>What is your source of income?</label>
-      <label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label>
-      <label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label>
-      <label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label>
-      <label><input type="checkbox" name="incomeSource" value="Other"> Other</label>
-      
-
-      <label>Approximate Monthly Income</label>
-      <input class="input" name="monthlyIncome">
-
-      <label>Can you provide proof of income?</label>
-      <select class="input" name="proofOfIncome">
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-      <div class=button-group">
-        <button type="button" class="form-btn prev-step">Back</button>
-        <button type="button" class="form-btn next-step">Next</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
       </div>
+
+      <div class="form-step">
+        <h3>Step 2: Income & Eligibility</h3>
+
+        <label>What is your source of income?</label>
+        <label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label>
+        <label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label>
+        <label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label>
+        <label><input type="checkbox" name="incomeSource" value="Other"> Other</label>
+
+        <label>Approximate Monthly Income</label>
+        <input class="input" name="monthlyIncome">
+
+        <label>Can you provide proof of income?</label>
+        <select class="input" name="proofOfIncome">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
       </div>
-<div class="form-step">
-       <h3>Step 3: Housing Needs</h3>
-      <label>Current Housing Status</label>
-      <select class="input" name="housingNeed">
-        <option>Currently housed</option>
-        <option>Unstable housing</option>
-        <option>Homeless</option>
-        <option>Hospital/Facility discharge</option>
-        <option>Other</option>
-      </select>
+            <div class="form-step">
+        <h3>Step 3: Documents</h3>
 
-      <label>Urgency Level</label>
-      <select class="input" name="status">
-        <option>Routine</option>
-        <option>Soon</option>
-        <option>Urgent</option>
-      </select>
+        <label>Upload Photo ID</label>
+        <input class="input" type="file">
 
-      <label>Describe your housing needs</label>
-      <textarea class="input" name="housingDescription"></textarea>
+        <label>Upload Proof of Income</label>
+        <input class="input" type="file">
 
-      <label>Important notes, accommodations, or barriers</label>
-      <textarea class="input" name="notes"></textarea>
-<div class="button-group">
-  <button type="button" class="form-btn prev-step">Back</button>
-  <button type="button" class="form-btn next-step">Next</button>
-</div>
-</div>
-<div class="form-step">
-      <h3>Step 4: Emergency Contact / Referral</h3>
-      <label>Emergency Contact Name</label>
-      <input class="input" name="emergencyContact">
+        <label>Referral Documents</label>
+        <input class="input" type="file">
 
-      <label>Emergency Contact Phone</label>
-      <input class="input" name="emergencyPhone">
+        <label>Additional Notes</label>
+        <textarea class="input" rows="6"></textarea>
 
-      <label>Case Manager / Referrer Name</label>
-      <input class="input" name="caseManagerName">
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="submit" class="form-btn">Submit Application</button>
+        </div>
 
-      <label>Case Manager / Referrer Email</label>
-      <input class="input" type="email" name="caseManagerEmail">
-
-      <label>Upload documents if available</label>
-      <input class="input" type="file" name="documents" multiple>
-<div class="button-group">
-       <button type="button" class="form-btn prev-step">Back</button>
-      <button type="button" class="form-btn next-step">Next</button>
-</div>
-</div>
-<div class="form-step">
-      <h3>Step 5: Consent & Electronic Signature</h3>
-      <p>By signing below, I certify that the information provided is true and I authorize Compassionate Heart Housing Solutions to review this application and contact me or my referral contact regarding housing options.</p>
-
-      <label>
-        <input type="checkbox" required name="consent" value="Agreed">
-        I agree and consent to submit this application electronically.
-      </label>
-
-      <label>Date Signed *</label>
-      <input class="input" type="date" name="dateSigned" required>
-
-      <label>Applicant Signature *</label>
-      <canvas id="signaturePad" width="500" height="180"></canvas>
-      <input type="hidden" id="signatureData" name="signatureData">
-<div class="button-group">
-  <button type="button" class="form-btn prev-step">Back</button>
-</div>
-      <div class="form-buttons">
-        <button type="button" class="form-btn" onclick="saveSignature()">Save Signature</button>
-        <button type="button" class="form-btn" onclick="clearSignature()">Clear Signature</button>
-        <button type="submit" class="form-btn">Submit Application</button>
       </div>
-</div>
     </form>
-
-    <div id="formResult"></div>
   </div>
 </section>
 
-<section id="contact" class="section cta">
-  <h2>Contact Compassionate Heart Housing Solutions</h2>
-  <p>Phone: <a href="tel:14143973146">(414) 397-3146</a></p>
-  <p>Email: <a href="mailto:info@compassionatehearthousingsolutions.com">info@compassionatehearthousingsolutions.com</a></p>
+<section id="contact" class="section">
+
+<h2>Contact Us</h2>
+
+<div class="contact-grid">
+
+<div>
+<h3>Phone</h3>
+<p>(414) 397-3146</p>
+</div>
+
+<div>
+<h3>Email</h3>
+<p>info@compassionatehearthousingsolutions.com</p>
+</div>
+
+<div>
+<h3>Hours</h3>
+<p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+</div>
+
+</div>
+
 </section>
-<a href="#about">About</a>
-<footer class="footer">
-  <p>Compassionate Heart Housing Solutions</p>
+
+<footer>
+
+<h3>Compassionate Heart Housing Solutions</h3>
+
+<p>Housing with Compassion, Hope & Stability</p>
+
+<p>© 2026 Compassionate Heart Housing Solutions. All Rights Reserved.</p>
+
 </footer>
 
 <script src="/script.js"></script>
+
 </body>
 </html>
