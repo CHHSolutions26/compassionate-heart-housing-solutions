@@ -43,9 +43,9 @@ body{
 }
 
 .header-inner{
-  max-width:1200px;
+  max-width:1400px;
   margin:0 auto;
-  padding:14px 24px;
+  padding:10px 40px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -53,9 +53,10 @@ body{
 }
 
 .main-logo{
-  width:105px;
-  height:auto;
-  border-radius:14px;
+    width:180px;
+    height:auto;
+    border-radius:14px;
+    transition:0.3s ease;
 }
 
 .main-nav{
@@ -82,12 +83,12 @@ body{
 
 /* Hero */
 
-.hero {
+.hero{
     background:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        url("images/hero-banner.png") center center / cover no-repeat;
+        linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
+        url("/images/hero-banner.png") center center / cover no-repeat;
 
-    min-height: 650px;
+    min-height:700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,11 +97,10 @@ body{
 }
 
 .hero-content{
-  max-width:900px;
-  background:rgba(13,31,124,.35);
-  padding:45px 30px;
-  border-radius:28px;
-  backdrop-filter:blur(3px);
+    max-width:900px;
+    padding:45px 30px;
+    border-radius:20px;
+    background:rgba(0,0,0,.25);
 }
 
 .hero h1{
