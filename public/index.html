@@ -6,12 +6,12 @@
   <title>Compassionate Heart Housing Solutions</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <img src="/logo.jpeg" alt="Compassionate Heart Housing Solutions Logo" class="main-logo">
-
+    <img src="/images/logo.jpeg" class="main-logo" alt="Compassionate Heart Housing Solutions Logo">
     <nav class="main-nav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -23,33 +23,28 @@
 </header>
 
 <section id="home" class="hero">
-  <div class="hero-overlay">
+  <div class="hero-content">
     <h1>Compassionate Heart Housing Solutions</h1>
     <p>Housing with Compassion, Hope, and Stability</p>
-    <div class="hero-buttons">
-      <a href="#apply" class="btn">Start Application</a>
-      <a href="#contact" class="btn secondary">Contact Us</a>
-    </div>
+    <a href="#apply" class="btn">Start Application</a>
+    <a href="#contact" class="btn secondary">Contact Us</a>
   </div>
 </section>
 
-<section id="about" class="section mission-section">
-  <div class="split">
-    <div>
-      <h2>Our Mission</h2>
-      <p>
-        Compassionate Heart Housing Solutions is committed to providing safe, supportive,
-        and compassionate housing opportunities that empower individuals to achieve
-        stability, independence, and an improved quality of life.
-      </p>
-      <p>
-        We believe every person deserves access to a secure and welcoming environment
-        where they are treated with dignity, respect, and understanding.
-      </p>
-    </div>
-
-    <img src="/images/mission.jpg" alt="Our Mission" class="section-img">
+<section id="about" class="section split">
+  <div>
+    <h2>Our Mission</h2>
+    <p>
+      Compassionate Heart Housing Solutions is committed to providing safe,
+      supportive, and compassionate housing opportunities that empower individuals
+      to achieve stability, independence, and an improved quality of life.
+    </p>
+    <p>
+      We believe every person deserves access to a secure and welcoming environment
+      where they are treated with dignity, respect, and understanding.
+    </p>
   </div>
+  <img src="/images/mission.jpg" class="section-img" alt="Our Mission">
 </section>
 
 <section id="services" class="section">
@@ -68,7 +63,7 @@
       <img src="/images/supportive-intake.jpg" alt="Supportive Intake">
       <h3>Supportive Intake</h3>
       <p>We collect housing needs, income details, emergency contacts, and referral information.</p>
-      <a href="#supportive-intake" class="card-link">Learn More</a>
+      <a href="#intake" class="card-link">Learn More</a>
     </div>
 
     <div class="service-card">
@@ -79,57 +74,51 @@
     </div>
   </div>
 </section>
-<section id="shared-housing" class="section detail-section">
-  <div class="split reverse">
-    <img src="/images/shared-housing.jpg" class="section-img" alt="Shared Housing">
-    <div>
-      <h2>Shared Housing Placement</h2>
-      <p>We help connect individuals with safe, stable, and supportive shared housing options.</p>
-    </div>
+
+<section id="shared-housing" class="section split">
+  <div>
+    <h2>Shared Housing Placement</h2>
+    <p>We help connect individuals with safe, stable, and supportive shared housing options.</p>
   </div>
+  <img src="/images/shared-housing.jpg" class="section-img" alt="Shared Housing Placement">
 </section>
 
-<section id="supportive-intake" class="section detail-section">
-  <div class="split">
-    <div>
-      <h2>Supportive Intake</h2>
-      <p>Our intake process helps identify housing needs, income source, support needs, and referral information.</p>
-    </div>
-    <img src="/images/supportive-intake.jpg" class="section-img" alt="Supportive Intake">
+<section id="intake" class="section split reverse">
+  <div>
+    <h2>Supportive Intake</h2>
+    <p>Our intake process helps identify housing needs, income source, support needs, and referral information.</p>
   </div>
+  <img src="/images/supportive-intake.jpg" class="section-img" alt="Supportive Intake">
 </section>
 
-<section id="referral" class="section detail-section">
-  <div class="split reverse">
-    <img src="/images/referral-coordination.jpg" class="section-img" alt="Referral Coordination">
-    <div>
-      <h2>Referral Coordination</h2>
-      <p>We work with case managers, families, agencies, and community partners to coordinate housing referrals.</p>
-    </div>
+<section id="referral" class="section split">
+  <div>
+    <h2>Referral Coordination</h2>
+    <p>We work with case managers, families, agencies, and community partners to coordinate housing referrals.</p>
   </div>
+  <img src="/images/referral-coordination.jpg" class="section-img" alt="Referral Coordination">
 </section>
 
-<section class="section support-section">
-  <div class="split">
-    <div>
-      <h2>Why Choose Compassionate Heart?</h2>
-      <ul>
-        <li>Safe and supportive housing options</li>
-        <li>Compassionate intake and referral support</li>
-        <li>Support for seniors, veterans, and individuals experiencing homelessness</li>
-        <li>Community-focused housing solutions</li>
-      </ul>
-    </div>
-    <img src="/images/support.jpg" class="section-img" alt="Support Section">
+<section class="section split reverse">
+  <div>
+    <h2>Why Choose Compassionate Heart?</h2>
+    <ul>
+      <li>Safe and supportive housing options</li>
+      <li>Compassionate intake and referral support</li>
+      <li>Support for seniors, veterans, and individuals experiencing homelessness</li>
+      <li>Community-focused housing solutions</li>
+    </ul>
   </div>
+  <img src="/images/support.jpg" class="section-img" alt="Support Section">
 </section>
 
-<section id="apply" class="section application-section">
+<section id="apply" class="section">
   <div class="form-wrap">
     <h2>Housing Application & Pre-Screening</h2>
     <p>Complete the housing application below. Fields marked with * are required.</p>
 
     <form id="applicationForm" enctype="multipart/form-data">
+
       <div class="form-step active">
         <h3>Step 1: Applicant Information</h3>
 
@@ -179,67 +168,114 @@
           <button type="button" class="form-btn next-step">Next</button>
         </div>
       </div>
-            <div class="form-step">
-        <h3>Step 3: Documents</h3>
 
-        <label>Upload Photo ID</label>
-        <input class="input" type="file">
+      <div class="form-step">
+        <h3>Step 3: Housing Needs</h3>
 
-        <label>Upload Proof of Income</label>
-        <input class="input" type="file">
+        <label>Current Housing Status</label>
+        <select class="input" name="housingNeed">
+          <option>Currently housed</option>
+          <option>Unstable housing</option>
+          <option>Homeless</option>
+          <option>Hospital/Facility discharge</option>
+          <option>Other</option>
+        </select>
 
-        <label>Referral Documents</label>
-        <input class="input" type="file">
+        <label>Urgency Level</label>
+        <select class="input" name="status">
+          <option>Routine</option>
+          <option>Soon</option>
+          <option>Urgent</option>
+        </select>
 
-        <label>Additional Notes</label>
-        <textarea class="input" rows="6"></textarea>
+        <label>Describe your housing needs</label>
+        <textarea class="input" name="housingDescription"></textarea>
+
+        <label>Important notes, accommodations, or barriers</label>
+        <textarea class="input" name="notes"></textarea>
 
         <div class="button-group">
           <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 4: Emergency Contact / Referral</h3>
+
+        <label>Emergency Contact Name</label>
+        <input class="input" name="emergencyContact">
+
+        <label>Emergency Contact Phone</label>
+        <input class="input" name="emergencyPhone">
+
+        <label>Case Manager / Referrer Name</label>
+        <input class="input" name="caseManagerName">
+
+        <label>Case Manager / Referrer Email</label>
+        <input class="input" type="email" name="caseManagerEmail">
+
+        <label>Upload documents if available</label>
+        <input class="input" type="file" name="documents" multiple>
+
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 5: Consent & Electronic Signature</h3>
+
+        <label>
+          <input type="checkbox" required name="consent" value="Agreed">
+          I agree and consent to submit this application electronically.
+        </label>
+
+        <label>Date Signed *</label>
+        <input class="input" type="date" name="dateSigned" required>
+
+        <label>Applicant Signature *</label>
+        <canvas id="signaturePad" width="500" height="180"></canvas>
+        <input type="hidden" id="signatureData" name="signatureData">
+
+        <div class="form-buttons">
+          <button type="button" class="form-btn" onclick="saveSignature()">Save Signature</button>
+          <button type="button" class="form-btn" onclick="clearSignature()">Clear Signature</button>
           <button type="submit" class="form-btn">Submit Application</button>
         </div>
-
       </div>
+
     </form>
+
+    <div id="formResult"></div>
   </div>
 </section>
 
 <section id="contact" class="section">
-
-<h2>Contact Us</h2>
-
-<div class="contact-grid">
-
-<div>
-<h3>Phone</h3>
-<p>(414) 397-3146</p>
-</div>
-
-<div>
-<h3>Email</h3>
-<p>info@compassionatehearthousingsolutions.com</p>
-</div>
-
-<div>
-<h3>Hours</h3>
-<p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
-</div>
-
-</div>
-
+  <h2>Contact Us</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>Phone</h3>
+      <p>(414) 397-3146</p>
+    </div>
+    <div>
+      <h3>Email</h3>
+      <p>info@compassionatehearthousingsolutions.com</p>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-
-<h3>Compassionate Heart Housing Solutions</h3>
-
-<p>Housing with Compassion, Hope & Stability</p>
-
-<p>© 2026 Compassionate Heart Housing Solutions. All Rights Reserved.</p>
-
+  <h3>Compassionate Heart Housing Solutions</h3>
+  <p>Housing with Compassion, Hope & Stability</p>
+  <p>© 2026 Compassionate Heart Housing Solutions. All Rights Reserved.</p>
 </footer>
 
 <script src="/script.js"></script>
-
 </body>
 </html>
