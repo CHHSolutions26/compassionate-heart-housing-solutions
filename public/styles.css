@@ -506,3 +506,77 @@ footer h3{
   text-decoration: none;
   font-weight: bold;
 }
+/* ===== PROFESSIONAL HOMEPAGE UPGRADE ===== */
+
+.hero{
+  min-height:720px;
+  background:
+    linear-gradient(rgba(10,20,75,.45), rgba(120,50,150,.35)),
+    url("/images/hero-banner.jpg") center/cover no-repeat;
+}
+
+.hero-content{
+  max-width:950px;
+  padding:55px 35px;
+  background:rgba(0,0,0,.22);
+  border-radius:30px;
+  backdrop-filter:blur(4px);
+}
+
+.hero h1{
+  font-size:64px;
+  line-height:1.05;
+  letter-spacing:-1px;
+}
+
+.hero p{
+  font-size:26px;
+  font-weight:500;
+}
+
+.service-card{
+  border:1px solid rgba(13,31,124,.08);
+}
+
+.service-card img{
+  height:280px;
+}
+
+.service-card-body{
+  padding:28px;
+}
+
+.service-card h3{
+  font-size:26px;
+}
+
+.section{
+  padding-top:95px;
+  padding-bottom:95px;
+}
+
+.section h2{
+  font-size:46px;
+}
+
+.cta-section{
+  background:linear-gradient(135deg,#0d1f7c,#7f5af0,#d946ef);
+  color:white;
+  text-align:center;
+  padding:90px 24px;
+}
+
+.cta-section h2{
+  color:white;
+  font-size:44px;
+}
+
+.cta-section p{
+  max-width:800px;
+  margin:0 auto 25px;
+  font-size:20px;
+}
+
+.site-footer{
+  background:#07164f;
+}
