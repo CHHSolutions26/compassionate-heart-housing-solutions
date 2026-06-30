@@ -115,7 +115,32 @@ async function loadApplications() {
         <td>${app.phone || "No phone"}</td>
         <td>${app.status || "Pending Review"}</td>
         <td>${app.submittedAt ? new Date(app.submittedAt).toLocaleDateString() : "—"}</td>
-        <td><button class="form-btn">View</button></td>
+        <td><button class="form-btn" onclick='viewApplication(${JSON.stringify(app)})'>View</button></td>
+        <script>
+function viewApplication(app) {
+  const details = `
+Name: ${app.fullName || "No name"}
+Phone: ${app.phone || "No phone"}
+Email: ${app.email || "No email"}
+
+Income Source: ${app.incomeSource || "Not listed"}
+Monthly Income: ${app.monthlyIncome || "Not listed"}
+Housing Need: ${app.housingNeed || "Not listed"}
+Urgency: ${app.status || "Not listed"}
+
+Emergency Contact: ${app.emergencyContact || "Not listed"}
+Emergency Phone: ${app.emergencyPhone || "Not listed"}
+
+Case Manager: ${app.caseManagerName || "Not listed"}
+Case Manager Email: ${app.caseManagerEmail || "Not listed"}
+
+Submitted: ${app.submittedAt || "Not listed"}
+Application ID: ${app.id || "Not listed"}
+`;
+
+  alert(details);
+}
+</script>
       `;
 
       tbody.appendChild(row);
