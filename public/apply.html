@@ -1,1 +1,140 @@
+<section id="apply" class="section">
+  <div class="form-wrap">
+    <h2>Housing Application & Pre-Screening</h2>
+    <p>Complete the housing application below. Fields marked with * are required.</p>
+
+    <form id="applicationForm" enctype="multipart/form-data">
+
+      <div class="form-step active">
+        <h3>Step 1: Applicant Information</h3>
+
+        <label>Full Name *</label>
+        <input class="input" name="fullName" required>
+
+        <label>Date of Birth</label>
+        <input class="input" type="date" name="dateOfBirth">
+
+        <label>Phone *</label>
+        <input class="input" name="phone" required>
+
+        <label>Email</label>
+        <input class="input" type="email" name="email">
+
+        <label>Current City/State</label>
+        <input class="input" name="currentLocation">
+
+        <label>Preferred Move-In Date</label>
+        <input class="input" type="date" name="moveInDate">
+
+        <div class="button-group">
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 2: Income & Eligibility</h3>
+
+        <label>What is your source of income?</label>
+        <label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label>
+        <label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label>
+        <label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label>
+        <label><input type="checkbox" name="incomeSource" value="Other"> Other</label>
+
+        <label>Approximate Monthly Income</label>
+        <input class="input" name="monthlyIncome">
+
+        <label>Can you provide proof of income?</label>
+        <select class="input" name="proofOfIncome">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 3: Housing Needs</h3>
+
+        <label>Current Housing Status</label>
+        <select class="input" name="housingNeed">
+          <option>Currently housed</option>
+          <option>Unstable housing</option>
+          <option>Homeless</option>
+          <option>Hospital/Facility discharge</option>
+          <option>Other</option>
+        </select>
+
+        <label>Urgency Level</label>
+        <select class="input" name="status">
+          <option>Routine</option>
+          <option>Soon</option>
+          <option>Urgent</option>
+        </select>
+
+        <label>Describe your housing needs</label>
+        <textarea class="input" name="housingDescription"></textarea>
+
+        <label>Important notes, accommodations, or barriers</label>
+        <textarea class="input" name="notes"></textarea>
+
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 4: Emergency Contact / Referral</h3>
+
+        <label>Emergency Contact Name</label>
+        <input class="input" name="emergencyContact">
+
+        <label>Emergency Contact Phone</label>
+        <input class="input" name="emergencyPhone">
+
+        <label>Case Manager / Referrer Name</label>
+        <input class="input" name="caseManagerName">
+
+        <label>Case Manager / Referrer Email</label>
+        <input class="input" type="email" name="caseManagerEmail">
+
+        <label>Upload documents if available</label>
+        <input class="input" type="file" name="documents" multiple>
+
+        <div class="button-group">
+          <button type="button" class="form-btn prev-step">Back</button>
+          <button type="button" class="form-btn next-step">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <h3>Step 5: Consent & Electronic Signature</h3>
+
+        <label>
+          <input type="checkbox" required name="consent" value="Agreed">
+          I agree and consent to submit this application electronically.
+        </label>
+
+        <label>Date Signed *</label>
+        <input class="input" type="date" name="dateSigned" required>
+
+        <label>Applicant Signature *</label>
+        <canvas id="signaturePad" width="500" height="180"></canvas>
+        <input type="hidden" id="signatureData" name="signatureData">
+
+        <div class="form-buttons">
+          <button type="button" class="form-btn" onclick="saveSignature()">Save Signature</button>
+          <button type="button" class="form-btn" onclick="clearSignature()">Clear Signature</button>
+          <button type="submit" class="form-btn">Submit Application</button>
+        </div>
+      </div>
+
+    </form>
+
+    <div id="formResult"></div>
+  </div>
+</section>
 
