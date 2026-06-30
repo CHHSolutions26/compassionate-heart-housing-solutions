@@ -1,1 +1,64 @@
+/* ===== ADMIN DASHBOARD ===== */
 
+.admin-number{
+    font-size:48px;
+    font-weight:700;
+    color:var(--purple);
+    margin:20px 0;
+    text-align:center;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:30px;
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.admin-table th{
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+    color:#fff;
+    padding:18px;
+    text-align:left;
+}
+
+.admin-table td{
+    padding:18px;
+    border-bottom:1px solid #ececec;
+}
+
+.admin-table tr:hover{
+    background:#f8f8ff;
+}
+
+.admin-status{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:30px;
+    background:#e9f7ef;
+    color:#1b8a3d;
+    font-weight:bold;
+}
+
+.dashboard-card{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+@media(max-width:900px){
+
+.admin-table{
+    display:block;
+    overflow-x:auto;
+}
+
+.admin-number{
+    font-size:36px;
+}
+
+}
