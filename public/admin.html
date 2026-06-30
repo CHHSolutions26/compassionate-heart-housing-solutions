@@ -91,5 +91,43 @@
 </footer>
 
 <script src="/script.js"></script>
+
+<script>
+async function loadApplications() {
+  const password = prompt("Enter admin password:");
+
+  try {
+    const response = await fetch("/api/submissions?password=" + encodeURIComponent(password));
+    const applications = await response.json();
+
+    document.querySelectorAll(".admin-number")[0].textContent = applications.length;
+    document.querySelectorAll(".admin-number")[1].textContent = applications.length;
+    document.querySelectorAll(".admin-number")[2].textContent = applications.length;
+
+    const tbody = document.querySelector(".admin-table tbody");
+    tbody.innerHTML = "";
+
+    applications.forEach(app => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${app.fullName || "No name"}</td>
+        <td>${app.phone || "No phone"}</td>
+        <td>${app.status || "Pending Review"}</td>
+        <td>${app.submittedAt ? new Date(app.submittedAt).toLocaleDateString() : "—"}</td>
+        <td><button class="form-btn">View</button></td>
+      `;
+
+      tbody.appendChild(row);
+    });
+
+  } catch (error) {
+    alert("Could not load applications. Check your admin password or server settings.");
+  }
+}
+
+loadApplications();
+</script>
+
 </body>
 </html>
