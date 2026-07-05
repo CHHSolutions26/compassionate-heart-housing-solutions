@@ -644,3 +644,30 @@ footer h3{
 }
 
 }
+/* Fix application form field layout */
+#applicationForm label {
+  display: block;
+  width: 100%;
+  margin: 18px 0 8px;
+  font-weight: 700;
+}
+
+#applicationForm .input,
+#applicationForm select,
+#applicationForm textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#applicationForm input[type="date"] {
+  max-width: 100%;
+}
+
+.checkbox-group label,
+.checkbox-line {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+}
