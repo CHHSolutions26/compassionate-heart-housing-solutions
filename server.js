@@ -33,11 +33,20 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } });
 
-function getSubmissions() {
-  try { return JSON.parse(fs.readFileSync(SUBMISSIONS_FILE, 'utf8')); }
-  catch { return []; }
+let submissionsCache = [];
+
+try {
+  submissionsCache = JSON.parse(fs.readFileSync(SUBMISSIONS_FILE, 'utf8'));
+} catch {
+  submissionsCache = [];
 }
+
+function getSubmissions() {
+  return submissionsCache;
+}
+
 function saveSubmissions(items) {
+  submissionsCache = items;
   fs.writeFileSync(SUBMISSIONS_FILE, JSON.stringify(items, null, 2));
 }
 
