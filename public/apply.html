@@ -1,7 +1,3 @@
-<head>
-  ...
-  <link rel="stylesheet" href="/styles.css">
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +11,16 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <img src="/logo.jpeg" class="main-logo" alt="Compassionate Heart Housing Solutions Logo">
+    <a href="/" class="brand">
+      <img src="/images/logo.jpeg" class="main-logo" alt="Compassionate Heart Housing Solutions Logo">
+    </a>
 
     <nav class="main-nav">
       <a href="/">Home</a>
-      <a href="/#about">About</a>
+      <a href="/about.html">About</a>
       <a href="/services.html">Services</a>
       <a href="/apply.html">Apply</a>
-      <a href="/#contact">Contact</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </div>
 </header>
@@ -47,7 +45,7 @@
         <input class="input" type="date" name="dateOfBirth">
 
         <label>Phone *</label>
-        <input class="input" name="phone" type="tel" required>
+        <input class="input" type="tel" name="phone" required>
 
         <label>Email</label>
         <input class="input" type="email" name="email">
@@ -56,8 +54,6 @@
         <input class="input" name="currentLocation">
 
         <label>Preferred Move-In Date</label>
-        <option value="" selected disabled>Select</option>
-        <option value="" selected disabled>Select</option>
         <input class="input" type="date" name="moveInDate">
 
         <div class="button-group">
@@ -69,10 +65,12 @@
         <h3>Step 2: Income & Eligibility</h3>
 
         <label>Income Source</label>
-        <label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label>
-        <label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label>
-        <label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label>
-        <label><input type="checkbox" name="incomeSource" value="Other"> Other</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="incomeSource" value="Employment"> Employment</label>
+          <label><input type="checkbox" name="incomeSource" value="SSI/SSDI"> SSI/SSDI</label>
+          <label><input type="checkbox" name="incomeSource" value="Veteran Assistance"> Veteran Assistance</label>
+          <label><input type="checkbox" name="incomeSource" value="Other"> Other</label>
+        </div>
 
         <label>Approximate Monthly Income</label>
         <input class="input" name="monthlyIncome">
@@ -80,8 +78,8 @@
         <label>Can you provide proof of income?</label>
         <select class="input" name="proofOfIncome">
           <option value="" selected disabled>Select</option>
-          <option>Yes</option>
-          <option>No</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
 
         <div class="button-group">
@@ -93,20 +91,22 @@
       <div class="form-step">
         <h3>Step 3: Housing Needs</h3>
 
-        <label>Current Housing Status</label>
-        <select class="input" name="housingNeed">
-          <option>Currently housed</option>
-          <option>Unstable housing</option>
-          <option>Homeless</option>
-          <option>Hospital/Facility discharge</option>
-          <option>Other</option>
+        <label>Current Housing Status *</label>
+        <select class="input" name="housingNeed" required>
+          <option value="" selected disabled>Select</option>
+          <option value="Currently housed">Currently housed</option>
+          <option value="Unstable housing">Unstable housing</option>
+          <option value="Homeless">Homeless</option>
+          <option value="Hospital/Facility discharge">Hospital/Facility discharge</option>
+          <option value="Other">Other</option>
         </select>
 
-        <label>Urgency Level</label>
-        <select class="input" name="status">
-          <option>Routine</option>
-          <option>Soon</option>
-          <option>Urgent</option>
+        <label>Urgency Level *</label>
+        <select class="input" name="status" required>
+          <option value="" selected disabled>Select</option>
+          <option value="Routine">Routine</option>
+          <option value="Soon">Soon</option>
+          <option value="Urgent">Urgent</option>
         </select>
 
         <label>Describe your housing needs</label>
@@ -148,7 +148,7 @@
       <div class="form-step">
         <h3>Step 5: Consent & Electronic Signature</h3>
 
-        <label>
+        <label class="checkbox-line">
           <input type="checkbox" required name="consent" value="Agreed">
           I agree and consent to submit this application electronically.
         </label>
@@ -171,9 +171,11 @@
     </form>
 
     <div id="formResult"></div>
+
   </div>
 </main>
 
 <script src="/script.js"></script>
+
 </body>
 </html>
