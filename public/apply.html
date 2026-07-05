@@ -47,7 +47,7 @@
         <input class="input" type="date" name="dateOfBirth">
 
         <label>Phone *</label>
-        <input class="input" name="phone" required>
+        <input class="input" name="phone" type="tel" required>
 
         <label>Email</label>
         <input class="input" type="email" name="email">
@@ -56,6 +56,8 @@
         <input class="input" name="currentLocation">
 
         <label>Preferred Move-In Date</label>
+        <option value="" selected disabled>Select</option>
+        <option value="" selected disabled>Select</option>
         <input class="input" type="date" name="moveInDate">
 
         <div class="button-group">
@@ -77,6 +79,7 @@
 
         <label>Can you provide proof of income?</label>
         <select class="input" name="proofOfIncome">
+          <option value="" selected disabled>Select</option>
           <option>Yes</option>
           <option>No</option>
         </select>
