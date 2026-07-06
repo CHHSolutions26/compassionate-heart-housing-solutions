@@ -93,7 +93,7 @@ app.post('/api/submit', upload.array('documents', 8), async (req, res) => {
 } catch (e) {
   console.error('Email notification failed:', e.message);
 }
-
+});
 console.log("NEW SUBMISSION SAVED:", record);
 console.log("ALL SUBMISSIONS:", getSubmissions());
 
