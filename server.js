@@ -131,6 +131,42 @@ app.get('/api/portal/status', (req, res) => {
     portalMessage: match.portalMessage || 'Your application has been received and is pending review.'
   });
 });
+app.post('/api/admin/update', express.json(), (req, res) => {
+  const password = req.query.password || req.headers['x-admin-password'];
+
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const { id, status, portalMessage, staffNote, caseManagerName } = req.body;
+
+  const applications = getSubmissions();
+  const appIndex = applications.findIndex(app => app.id === id);
+
+  if (appIndex === -1) {
+    return res.status(404).json({ error: 'Application not found' });
+  }
+
+  applications[appIndex].status = status || applications[appIndex].status || 'Pending Review';
+  applications[appIndex].portalMessage = portalMessage || applications[appIndex].portalMessage || '';
+  applications[appIndex].staffNote = staffNote || applications[appIndex].staffNote || '';
+  applications[appIndex].caseManagerName = caseManagerName || applications[appIndex].caseManagerName || '';
+
+  applications[appIndex].timeline = applications[appIndex].timeline || [];
+  applications[appIndex].timeline.unshift({
+    date: new Date().toISOString(),
+    status: applications[appIndex].status,
+    note: staffNote || 'Application updated'
+  });
+
+  saveSubmissions(applications);
+
+  res.json({
+    ok: true,
+    message: 'Application updated successfully',
+    application: applications[appIndex]
+  });
+});
 app.get('/api/submissions.csv', (req, res) => {
   const password = req.query.password || req.headers['x-admin-password'];
   if (password !== process.env.ADMIN_PASSWORD) return res.status(401).send('Unauthorized');
