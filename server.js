@@ -89,7 +89,7 @@ app.post('/api/submit', upload.array('documents', 8), async (req, res) => {
   };
   submissions.unshift(record);
   saveSubmissions(submissions);
-  try { await sendNotification(record); } catch (e) { console.error('Email notification failed:', e.message); }
+ }
   res.json({ ok: true, id: record.id, message: 'Your form was submitted successfully.' });
   console.log("NEW SUBMISSION SAVED:", record);
 console.log("ALL SUBMISSIONS:", getSubmissions());
