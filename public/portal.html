@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applicant Portal | Compassionate Heart Housing Solutions</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
 
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <img src="/images/logo.jpeg" class="main-logo" alt="Compassionate Heart Housing Solutions Logo">
+    </a>
+
+    <nav class="main-nav">
+      <a href="/">Home</a>
+      <a href="/apply.html">Apply</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="apply-hero">
+  <h1>Applicant Portal</h1>
+  <p>Check the status of your housing application.</p>
+</section>
+
+<main class="apply-page">
+  <div class="apply-card">
+
+    <h2>Check Application Status</h2>
+
+    <label>Application ID *</label>
+    <input class="input" id="applicationId" placeholder="Example: CHHS-1783257796877">
+
+    <label>Phone Number *</label>
+    <input class="input" id="phoneNumber" placeholder="Example: 4143234567">
+
+    <div class="button-group">
+      <button class="form-btn" onclick="checkStatus()">Check Status</button>
+    </div>
+
+    <div id="portalResult"></div>
+
+  </div>
+</main>
+
+<script>
+async function checkStatus() {
+  const id = document.getElementById("applicationId").value.trim();
+  const phone = document.getElementById("phoneNumber").value.trim();
+  const result = document.getElementById("portalResult");
+
+  if (!id || !phone) {
+    result.innerHTML = "<p class='notice'>Enter your Application ID and phone number.</p>";
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/portal/status?id=" + encodeURIComponent(id) + "&phone=" + encodeURIComponent(phone));
+    const data = await res.json();
+
+    if (!res.ok) {
+      result.innerHTML = "<p class='notice'>Application not found. Check your ID and phone number.</p>";
+      return;
+    }
+
+    result.innerHTML = `
+      <div class="dashboard-card" style="margin-top:30px;">
+        <h2>Application Status</h2>
+        <p><strong>Name:</strong> ${data.fullName || "Not listed"}</p>
+        <p><strong>Status:</strong> ${data.status || "Pending Review"}</p>
+        <p><strong>Housing Need:</strong> ${data.housingNeed || "Not listed"}</p>
+        <p><strong>Submitted:</strong> ${data.submittedAt ? new Date(data.submittedAt).toLocaleString() : "Not listed"}</p>
+        <p><strong>Case Manager / Referrer:</strong> ${data.caseManagerName || "Not listed"}</p>
+        <p><strong>Message:</strong> ${data.portalMessage || "Your application has been received and is pending review."}</p>
+      </div>
+    `;
+
+  } catch (error) {
+    result.innerHTML = "<p class='notice'>Could not check application status.</p>";
+  }
+}
+</script>
+
+</body>
+</html>
