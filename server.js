@@ -100,7 +100,37 @@ app.get('/api/submissions', (req, res) => {
   if (password !== process.env.ADMIN_PASSWORD) return res.status(401).json({ error: 'Unauthorized' });
   res.json(getSubmissions());
 });
+app.get('/api/portal/status', (req, res) => {
+  const id = (req.query.id || '').trim();
+  const phone = (req.query.phone || '').replace(/\D/g, '');
 
+  if (!id || !phone) {
+    return res.status(400).json({ error: 'Missing application ID or phone number' });
+  }
+
+  const applications = getSubmissions();
+
+  const match = applications.find(app => {
+    const appPhone = String(app.phone || '').replace(/\D/g, '');
+    return app.id === id && appPhone === phone;
+  });
+
+  if (!match) {
+    return res.status(404).json({ error: 'Application not found' });
+  }
+
+  res.json({
+    id: match.id,
+    fullName: match.fullName,
+    phone: match.phone,
+    email: match.email,
+    status: match.status || 'Pending Review',
+    housingNeed: match.housingNeed,
+    submittedAt: match.submittedAt,
+    caseManagerName: match.caseManagerName,
+    portalMessage: match.portalMessage || 'Your application has been received and is pending review.'
+  });
+});
 app.get('/api/submissions.csv', (req, res) => {
   const password = req.query.password || req.headers['x-admin-password'];
   if (password !== process.env.ADMIN_PASSWORD) return res.status(401).send('Unauthorized');
