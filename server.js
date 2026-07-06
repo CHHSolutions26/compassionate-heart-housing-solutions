@@ -102,6 +102,7 @@ res.json({
   id: record.id,
   message: 'Your form was submitted successfully.'
 });
+});
 
 app.get('/api/submissions', (req, res) => {
   const password = req.query.password || req.headers['x-admin-password'];
