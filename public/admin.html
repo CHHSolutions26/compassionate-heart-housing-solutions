@@ -77,7 +77,15 @@ function viewApplication(id) {
             </div>
         `).join("")
         : "<p>No timeline updates yet.</p>";
-
+const documents = Array.isArray(app.documents) && app.documents.length
+  ? app.documents.map(doc => `
+      <div class="detail-box">
+        <p><strong>${safe(doc.category || "Document")}</strong></p>
+        <p>${safe(doc.originalName || doc.filename || "Uploaded file")}</p>
+        <p><strong>Status:</strong> ${safe(doc.status || "Pending Review")}</p>
+      </div>
+    `).join("")
+  : "<p>No documents uploaded yet.</p>";
     content.innerHTML = `
         <h2>${safe(app.fullName || "Application Details")}</h2>
 
@@ -107,6 +115,10 @@ function viewApplication(id) {
         </div>
 
         <div class="detail-box">
+        <div class="detail-box">
+  <h3>Applicant Documents</h3>
+  ${documents}
+</div>
             <h3>Timeline</h3>
             <div class="timeline">${timeline}</div>
         </div>
