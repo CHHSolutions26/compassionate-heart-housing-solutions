@@ -212,6 +212,23 @@ app.post('/api/documents/upload', upload.array('documents', 10), (req, res) => {
     documents: uploadedDocs
   });
 });
+app.get('/api/documents/:applicationId', (req, res) => {
+  const { applicationId } = req.params;
+
+  const applications = getSubmissions();
+  const application = applications.find(app => app.id === applicationId);
+
+  if (!application) {
+    return res.status(404).json({
+      error: 'Application not found'
+    });
+  }
+
+  res.json({
+    ok: true,
+    documents: application.documents || []
+  });
+});
 app.get('/api/submissions.csv', (req, res) => {
   const password = req.query.password || req.headers['x-admin-password'];
   if (password !== process.env.ADMIN_PASSWORD) return res.status(401).send('Unauthorized');
