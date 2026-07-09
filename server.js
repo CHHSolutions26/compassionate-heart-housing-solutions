@@ -80,46 +80,10 @@ async function sendNotification(record) {
 }
 
 app.post('/api/submit', upload.array('documents', 8), async (req, res) => {
-  app.post('/api/documents/status', express.json(), (req, res) => {
-  const { applicationId, documentId, status } = req.body;
-
-  if (!applicationId || !documentId || !status) {
-    return res.status(400).json({ error: 'Missing document update information' });
-  }
-
-  const applications = getSubmissions();
-  const appIndex = applications.findIndex(app => app.id === applicationId);
-
-  if (appIndex === -1) {
-    return res.status(404).json({ error: 'Application not found' });
-  }
-
-  applications[appIndex].documents = applications[appIndex].documents || [];
-
-  const docIndex = applications[appIndex].documents.findIndex(doc => doc.id === documentId);
-
-  if (docIndex === -1) {
-    return res.status(404).json({ error: 'Document not found' });
-  }
-
-  applications[appIndex].documents[docIndex].status = status;
-  applications[appIndex].documents[docIndex].reviewedAt = new Date().toISOString();
-
-  applications[appIndex].timeline = applications[appIndex].timeline || [];
-  applications[appIndex].timeline.unshift({
-    date: new Date().toISOString(),
-    status: 'Document ' + status,
-    note: applications[appIndex].documents[docIndex].category + ' marked as ' + status
-  });
-
-  saveSubmissions(applications);
-
-  res.json({
-    ok: true,
-    message: 'Document status updated',
-    application: applications[appIndex]
-  });
+   
+   res.json({ok: true, id: record.id,message: 'Your form was submitted successfully.'
 });
+  
   const submissions = getSubmissions();
   const record = {
     id: `CHHS-${Date.now()}`,
@@ -215,6 +179,44 @@ app.post('/api/admin/update', express.json(), (req, res) => {
   res.json({
     ok: true,
     message: 'Application updated successfully',
+    application: applications[appIndex]
+  });
+app.post('/api/documents/status', express.json(), (req, res) => {
+  const { applicationId, documentId, status } = req.body;
+
+  if (!applicationId || !documentId || !status) {
+    return res.status(400).json({ error: 'Missing document update information' });
+  }
+
+  const applications = getSubmissions();
+  const appIndex = applications.findIndex(app => app.id === applicationId);
+
+  if (appIndex === -1) {
+    return res.status(404).json({ error: 'Application not found' });
+  }
+
+  applications[appIndex].documents = applications[appIndex].documents || [];
+  const docIndex = applications[appIndex].documents.findIndex(doc => doc.id === documentId);
+
+  if (docIndex === -1) {
+    return res.status(404).json({ error: 'Document not found' });
+  }
+
+  applications[appIndex].documents[docIndex].status = status;
+  applications[appIndex].documents[docIndex].reviewedAt = new Date().toISOString();
+
+  applications[appIndex].timeline = applications[appIndex].timeline || [];
+  applications[appIndex].timeline.unshift({
+    date: new Date().toISOString(),
+    status: 'Document ' + status,
+    note: applications[appIndex].documents[docIndex].category + ' marked as ' + status
+  });
+
+  saveSubmissions(applications);
+
+  res.json({
+    ok: true,
+    message: 'Document status updated',
     application: applications[appIndex]
   });
 });
