@@ -177,6 +177,41 @@ app.post('/api/admin/update', express.json(), (req, res) => {
     application: applications[appIndex]
   });
 });
+app.post('/api/documents/upload', upload.array('documents', 10), (req, res) => {
+  const { applicationId, category } = req.body;
+
+  if (!applicationId) {
+    return res.status(400).json({ error: 'Application ID is required' });
+  }
+
+  const applications = getSubmissions();
+  const appIndex = applications.findIndex(app => app.id === applicationId);
+
+  if (appIndex === -1) {
+    return res.status(404).json({ error: 'Application not found' });
+  }
+
+  applications[appIndex].documents = applications[appIndex].documents || [];
+
+  const uploadedDocs = (req.files || []).map(file => ({
+    id: 'DOC-' + Date.now() + '-' + Math.floor(Math.random() * 10000),
+    category: category || 'Other',
+    originalName: file.originalname,
+    filename: file.filename,
+    path: file.path,
+    uploadedAt: new Date().toISOString(),
+    status: 'Pending Review'
+  }));
+
+  applications[appIndex].documents.push(...uploadedDocs);
+  saveSubmissions(applications);
+
+  res.json({
+    ok: true,
+    message: 'Documents uploaded successfully',
+    documents: uploadedDocs
+  });
+});
 app.get('/api/submissions.csv', (req, res) => {
   const password = req.query.password || req.headers['x-admin-password'];
   if (password !== process.env.ADMIN_PASSWORD) return res.status(401).send('Unauthorized');
