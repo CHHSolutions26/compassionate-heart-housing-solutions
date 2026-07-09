@@ -183,9 +183,7 @@ async function updateDocumentStatus(applicationId, documentId, status) {
   try {
     const res = await fetch("/api/documents/status", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ applicationId, documentId, status })
     });
 
@@ -195,6 +193,18 @@ async function updateDocumentStatus(applicationId, documentId, status) {
       alert(data.error || "Document update failed.");
       return;
     }
+
+    await loadApplications();
+
+    selectedApplicationId = applicationId;
+    viewApplication(applicationId);
+
+    alert("Document marked as " + status + ".");
+  } catch (error) {
+    console.error(error);
+    alert("Document update failed.");
+  }
+}
 
     const index = applications.findIndex(item => item.id === applicationId);
     
