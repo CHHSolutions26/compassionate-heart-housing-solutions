@@ -206,24 +206,19 @@ async function updateDocumentStatus(applicationId, documentId, status) {
   }
 }
 
-    const index = applications.findIndex(item => item.id === applicationId);
-    
-    if (index !== -1) {
-      applications[index] = data.application;
-}
+    await loadApplications();
 
 selectedApplicationId = applicationId;
 viewApplication(applicationId);
 
-    renderApplications();
-    updateCounts();
-
-    alert("Document marked as " + status + ".");
-  } catch (error) {
+alert("Document marked as " + status + ".");
+}
+catch (error) {
     console.error(error);
     alert("Document update failed.");
-  }
 }
+}
+
 function closeModal(){document.getElementById("applicationModal").style.display="none"}function printApplication(){window.print()}function downloadCSV(){const password=savedPassword||document.getElementById("adminPassword").value.trim();if(!password){alert("Enter your admin password first.");return}window.location.href="/api/submissions.csv?password="+encodeURIComponent(password)}
 </script>
 </body>
