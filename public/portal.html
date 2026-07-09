@@ -76,9 +76,39 @@ async function checkStatus() {
         <p><strong>Housing Need:</strong> ${data.housingNeed || "Not listed"}</p>
         <p><strong>Submitted:</strong> ${data.submittedAt ? new Date(data.submittedAt).toLocaleString() : "Not listed"}</p>
         <p><strong>Case Manager / Referrer:</strong> ${data.caseManagerName || "Not listed"}</p>
-        <p><strong>Message:</strong> ${data.portalMessage || "Your application has been received and is pending review."}</p>
-      </div>
-    `;
+<p><strong>Message:</strong> ${data.portalMessage || "Your application has been received and is pending review."}</p>
+      
+<hr style="margin:30px 0;">
+
+<h3>Upload Documents</h3>
+
+<label>Document Category</label>
+<select id="documentCategory" class="input">
+    <option>Photo ID</option>
+    <option>Proof of Income</option>
+    <option>Social Security Card</option>
+    <option>Birth Certificate</option>
+    <option>Lease</option>
+    <option>Other</option>
+</select>
+
+<input
+    type="file"
+    id="documentFile"
+    class="input"
+    style="margin-top:15px;">
+
+<button
+    class="form-btn"
+    style="margin-top:15px;"
+    onclick="uploadDocument('${data.id}')">
+    Upload Document
+</button>
+
+<div id="documentsList" style="margin-top:25px;"></div>
+
+ </div>
+  `;
 
   } catch (error) {
     result.innerHTML = "<p class='notice'>Could not check application status.</p>";
