@@ -83,6 +83,13 @@ const documents = Array.isArray(app.documents) && app.documents.length
         <p><strong>${safe(doc.category || "Document")}</strong></p>
         <p>${safe(doc.originalName || doc.filename || "Uploaded file")}</p>
         <p><strong>Status:</strong> ${safe(doc.status || "Pending Review")}</p>
+        <button class="admin-btn small" onclick="updateDocumentStatus('${safe(app.id)}','${safe(doc.id)}','Approved')">
+  Approve
+</button>
+
+<button class="admin-btn secondary small" onclick="updateDocumentStatus('${safe(app.id)}','${safe(doc.id)}','Rejected')">
+  Reject
+</button>
       </div>
     `).join("")
   : "<p>No documents uploaded yet.</p>";
@@ -170,6 +177,36 @@ async function saveCaseUpdate() {
   } catch (error) {
     console.error(error);
     alert("Update failed.");
+  }
+}
+async function updateDocumentStatus(applicationId, documentId, status) {
+  try {
+    const res = await fetch("/api/documents/status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ applicationId, documentId, status })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Document update failed.");
+      return;
+    }
+
+    const index = applications.findIndex(item => item.id === applicationId);
+    if (index !== -1) applications[index] = data.application;
+
+    viewApplication(applicationId);
+    renderApplications();
+    updateCounts();
+
+    alert("Document marked as " + status + ".");
+  } catch (error) {
+    console.error(error);
+    alert("Document update failed.");
   }
 }
 function closeModal(){document.getElementById("applicationModal").style.display="none"}function printApplication(){window.print()}function downloadCSV(){const password=savedPassword||document.getElementById("adminPassword").value.trim();if(!password){alert("Enter your admin password first.");return}window.location.href="/api/submissions.csv?password="+encodeURIComponent(password)}
