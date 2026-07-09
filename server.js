@@ -90,6 +90,7 @@ app.post('/api/submit', upload.array('documents', 8), async (req, res) => {
     files: (req.files || []).map(f => ({ originalName: f.originalname, filename: f.filename, size: f.size }))
   };
   submissions.unshift(record);
+  saveSubmissions(submissions);
   try {
   await sendNotification(record);
 } catch (e) {
