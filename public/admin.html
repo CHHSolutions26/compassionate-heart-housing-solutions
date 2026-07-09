@@ -197,9 +197,14 @@ async function updateDocumentStatus(applicationId, documentId, status) {
     }
 
     const index = applications.findIndex(item => item.id === applicationId);
-    if (index !== -1) applications[index] = data.application;
+    
+    if (index !== -1) {
+      applications[index] = data.application;
+}
 
-    viewApplication(applicationId);
+selectedApplicationId = applicationId;
+viewApplication(applicationId);
+
     renderApplications();
     updateCounts();
 
