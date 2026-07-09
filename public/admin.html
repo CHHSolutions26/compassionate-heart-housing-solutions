@@ -115,7 +115,52 @@ function viewApplication(id) {
     modal.style.display = "block";
 }
 function setStatus(status){const input=document.getElementById("editStatus");if(input)input.value=status;const app=applications.find(item=>item.id===selectedApplicationId);if(app){app.status=status;viewApplication(selectedApplicationId)}}
-async function saveCaseUpdate(){const password=savedPassword||document.getElementById("adminPassword").value.trim(),app=applications.find(item=>item.id===selectedApplicationId);if(!password||!app){alert("Load applications first.");return}const payload={id:selectedApplicationId,status:document.getElementById("editStatus").value,portalMessage:document.getElementById("editPortalMessage").value,staffNote:document.getElementById("editStaffNote").value,caseManagerName:document.getElementById("editCaseManager").value};try{const res=await fetch("/api/admin/update?password="+encodeURIComponent(password),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),data=await res.json();if(!res.ok){alert("Update failed.");return}const index=applications.findIndex(item=>item.id===selectedApplicationId);if(index!==-1)applications[index]=data.application;updateCounts();renderApplications();viewApplication(selectedApplicationId);alert("Application updated successfully.")}catch(error){alert("Could not update application.")}}
+async function saveCaseUpdate() {
+  try {
+    const password = savedPassword || document.getElementById("adminPassword").value.trim();
+    const app = applications.find(item => item.id === selectedApplicationId);
+
+    if (!password || !app) {
+      alert("Load applications first.");
+      return;
+    }
+
+    const payload = {
+      id: selectedApplicationId,
+      status: document.getElementById("editStatus").value,
+      portalMessage: document.getElementById("editPortalMessage").value,
+      staffNote: "Application updated",
+      caseManagerName: document.getElementById("editCaseManager").value
+    };
+
+    const res = await fetch("/api/admin/update?password=" + encodeURIComponent(password), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Update failed.");
+      return;
+    }
+
+    const index = applications.findIndex(item => item.id === selectedApplicationId);
+    if (index !== -1) applications[index] = data.application;
+
+    updateCounts();
+    renderApplications();
+    viewApplication(selectedApplicationId);
+
+    alert("Application updated successfully.");
+  } catch (error) {
+    console.error(error);
+    alert("Update failed.");
+  }
+}
 function closeModal(){document.getElementById("applicationModal").style.display="none"}function printApplication(){window.print()}function downloadCSV(){const password=savedPassword||document.getElementById("adminPassword").value.trim();if(!password){alert("Enter your admin password first.");return}window.location.href="/api/submissions.csv?password="+encodeURIComponent(password)}
 </script>
 </body>
