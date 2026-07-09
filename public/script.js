@@ -112,15 +112,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("applicationForm");
 
   if (form) {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      if (!validateStep(steps[currentStep])) return;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-      if (canvas && signatureData) {
-        signatureData.value = canvas.toDataURL("image/png");
-      }
+    if (canvas && signatureData) {
+      signatureData.value = canvas.toDataURL("image/png");
+    }
 
+    try {
       const formData = new FormData(form);
 
       const res = await fetch("/api/submit", {
@@ -131,15 +135,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await res.json();
 
       if (res.ok) {
-        alert("Application submitted successfully.");
+        alert("Application submitted successfully. Your ID is: " + result.id);
         form.reset();
         currentStep = 0;
         showStep(currentStep);
       } else {
-        alert("Submission failed.");
+        alert(result.error || "Submission failed.");
       }
-    });
-  }
+    } catch (error) {
+      alert("Submission error. Check Render logs.");
+      console.error(error);
+    }
+  });
+}
 
   showStep(currentStep);
 });
