@@ -49,7 +49,71 @@ function statusClass(status){return "status-"+String(status||"Pending Review").r
 async function loadApplications(){const password=document.getElementById("adminPassword").value.trim(),message=document.getElementById("adminMessage");if(!password){message.innerHTML="<p class='notice'>Enter your admin password first.</p>";return}savedPassword=password;try{const res=await fetch("/api/submissions?password="+encodeURIComponent(password)+"&v="+Date.now()),data=await res.json();if(!res.ok){message.innerHTML="<p class='notice'>Wrong password or access denied.</p>";return}applications=Array.isArray(data)?data:[];renderApplications();updateCounts();message.innerHTML="<p class='notice'>Applications loaded successfully.</p>"}catch(error){message.innerHTML="<p class='notice'>Could not load applications.</p>"}}
 function updateCounts(){document.getElementById("totalCount").textContent=applications.length;document.getElementById("pendingCount").textContent=applications.filter(app=>!app.status||app.status==="Pending Review").length;document.getElementById("urgentCount").textContent=applications.filter(app=>app.status==="Urgent").length;document.getElementById("approvedCount").textContent=applications.filter(app=>app.status==="Approved").length}
 function renderApplications(){const container=document.getElementById("applicationsBody"),search=(document.getElementById("searchBox")?.value||"").toLowerCase(),filter=document.getElementById("statusFilter")?.value||"";let filtered=applications.filter(app=>{const status=app.status||"Pending Review",searchable=[app.fullName,app.phone,app.email,app.housingNeed,status,app.caseManagerName,app.portalMessage,app.staffNote].join(" ").toLowerCase();return searchable.includes(search)&&(!filter||status===filter)});if(!filtered.length){container.innerHTML="<div class='notice'>No matching applications found.</div>";return}container.innerHTML="";filtered.forEach(app=>{const status=app.status||"Pending Review",card=document.createElement("div");card.className="app-card";card.innerHTML=`<div><h3>${safe(app.fullName||"No name")}</h3><div class="app-meta"><strong>ID:</strong> ${safe(app.id||"Not listed")}<br><strong>Submitted:</strong> ${app.submittedAt?new Date(app.submittedAt).toLocaleString():"Not listed"}<br><strong>Housing Need:</strong> ${safe(app.housingNeed||"Not listed")}</div></div><div><span class="status-pill ${statusClass(status)}">${safe(status)}</span><div class="app-meta"><strong>Phone:</strong> ${safe(app.phone||"No phone")}<br><strong>Email:</strong> ${safe(app.email||"No email")}<br><strong>Case Manager:</strong> ${safe(app.caseManagerName||"Not assigned")}</div></div><div><button class="admin-btn small" onclick="viewApplication('${safe(app.id)}')">View / Manage</button></div>`;container.appendChild(card)})}
-function viewApplication(id){const app=applications.find(item=>item.id===id);if(!app)return;selectedApplicationId=id;const modal=document.getElementById("applicationModal"),content=document.getElementById("modalContent"),currentStatus=app.status||"Pending Review";const buttons=statusOptions.map(status=>`<button class="admin-btn ${status===currentStatus?"":"secondary"} small" onclick="setStatus('${status}')">${status}</button>`).join("");const timeline=Array.isArray(app.timeline)&&app.timeline.length?app.timeline.map(item=>`<div class="timeline-item"><strong>${safe(item.status||"Update")}</strong><br><small>${item.date?new Date(item.date).toLocaleString():""}</small><p>${safe(item.note||"")}</p></div>`).join(""):"<p>No timeline updates yet.</p>";content.innerHTML=`<h2>${safe(app.fullName||"Application Details")}</h2><p><strong>Application ID:</strong> ${safe(app.id||"Not listed")}</p><p><strong>Submitted:</strong> ${app.submittedAt?new Date(app.submittedAt).toLocaleString():"Not listed"}</p><div class="detail-grid"><div class="detail-box"><h3>Case Manager Controls</h3><label class="admin-label">Status</label><div class="status-buttons">${buttons}</div><input type="hidden" id="editStatus" value="${safe(currentStatus)}"><label class="admin-label">Assigned Case Manager</label><input class="admin-input" id="editCaseManager" value="${safe(app.caseManagerName||"")}" placeholder="Case manager name"><label class="admin-label">Message for Applicant Portal</label><textarea class="admin-textarea" id="editPortalMessage" placeholder="Message applicant will see in portal">${safe(app.portalMessage||"Your application has been received and is pending review.")}</textarea><label class="admin-label">Private Staff Note</label><textarea class="admin-textarea" id="editStaffNote" placeholder="Private internal note">${safe(app.staffNote||"")}</textarea></div><div class="detail-box"><h3>Applicant Information</h3><p><strong>Name:</strong> ${safe(app.fullName||"Not listed")}</p><p><strong>Date of Birth:</strong> ${safe(app.dateOfBirth||"Not listed")}</p><p><strong>Phone:</strong> ${safe(app.phone||"Not listed")}</p><p><strong>Email:</strong> ${safe(app.email||"Not listed")}</p><p><strong>Current Location:</strong> ${safe(app.currentLocation||"Not listed")}</p><p><strong>Move-In Date:</strong> ${safe(app.moveInDate||"Not listed")}</p></div><div class="detail-box"><h3>Income & Eligibility</h3><p><strong>Income Source:</strong> ${safe(Array.isArray(app.incomeSource)?app.incomeSource.join(", "):app.incomeSource||"Not listed")}</p><p><strong>Monthly Income:</strong> ${safe(app.monthlyIncome||"Not listed")}</p><p><strong>Proof of Income:</strong> ${safe(app.proofOfIncome||"Not listed")}</p></div><div class="detail-box"><h3>Housing Needs</h3><p><strong>Housing Need:</strong> ${safe(app.housingNeed||"Not listed")}</p><p><strong>Urgency:</strong> ${safe(app.status||"Pending Review")}</p><p><strong>Description:</strong> ${safe(app.housingDescription||"Not listed")}</p><p><strong>Applicant Notes:</strong> ${safe(app.notes||"Not listed")}</p></div><div class="detail-box"><h3>Emergency Contact / Referral</h3><p><strong>Emergency Contact:</strong> ${safe(app.emergencyContact||"Not listed")}</p><p><strong>Emergency Phone:</strong> ${safe(app.emergencyPhone||"Not listed")}</p><p><strong>Case Manager / Referrer:</strong> ${safe(app.caseManagerName||"Not listed")}</p><p><strong>Case Manager Email:</strong> ${safe(app.caseManagerEmail||"Not listed")}</p></div><div class="detail-box"><h3>Signature</h3>${app.signatureData?`<img src="${app.signatureData}" style="max-width:100%; border:1px solid #ddd; border-radius:12px;">`:"<p>No signature saved.</p>"}</div><div class="detail-box" style="grid-column:1 / -1;"><h3>Timeline</h3><div class="timeline">${timeline}</div></div></div>`;modal.style.display="block"}
+function viewApplication(id) {
+    const app = applications.find(item => item.id === id);
+    if (!app) return;
+
+    selectedApplicationId = id;
+
+    const modal = document.getElementById("applicationModal");
+    const content = document.getElementById("modalContent");
+
+    const currentStatus = app.status || "Pending Review";
+
+    const buttons = statusOptions.map(status => `
+        <button
+            class="admin-btn ${status === currentStatus ? "" : "secondary"} small"
+            onclick="setStatus('${status}')">
+            ${status}
+        </button>
+    `).join("");
+
+    const timeline = Array.isArray(app.timeline) && app.timeline.length
+        ? app.timeline.map(item => `
+            <div class="timeline-item">
+                <strong>${safe(item.status || "Update")}</strong><br>
+                <small>${item.date ? new Date(item.date).toLocaleString() : ""}</small>
+                <p>${safe(item.note || "")}</p>
+            </div>
+        `).join("")
+        : "<p>No timeline updates yet.</p>";
+
+    content.innerHTML = `
+        <h2>${safe(app.fullName || "Application Details")}</h2>
+
+        <p><strong>Application ID:</strong> ${safe(app.id || "")}</p>
+        <p><strong>Submitted:</strong> ${app.submittedAt ? new Date(app.submittedAt).toLocaleString() : ""}</p>
+
+        <div class="detail-box">
+            <h3>Case Manager Controls</h3>
+
+            <label class="admin-label">Status</label>
+            <div class="status-buttons">${buttons}</div>
+
+            <input type="hidden" id="editStatus" value="${safe(currentStatus)}">
+
+            <label class="admin-label">Assigned Case Manager</label>
+            <input
+                class="admin-input"
+                id="editCaseManager"
+                value="${safe(app.caseManagerName || "")}"
+                placeholder="Case manager name">
+
+            <label class="admin-label">Message for Applicant Portal</label>
+            <textarea
+                class="admin-textarea"
+                id="editPortalMessage"
+                placeholder="Message applicant will see in portal">${safe(app.portalMessage || "")}</textarea>
+        </div>
+
+        <div class="detail-box">
+            <h3>Timeline</h3>
+            <div class="timeline">${timeline}</div>
+        </div>
+    `;
+
+    modal.style.display = "block";
+}
 function setStatus(status){const input=document.getElementById("editStatus");if(input)input.value=status;const app=applications.find(item=>item.id===selectedApplicationId);if(app){app.status=status;viewApplication(selectedApplicationId)}}
 async function saveCaseUpdate(){const password=savedPassword||document.getElementById("adminPassword").value.trim(),app=applications.find(item=>item.id===selectedApplicationId);if(!password||!app){alert("Load applications first.");return}const payload={id:selectedApplicationId,status:document.getElementById("editStatus").value,portalMessage:document.getElementById("editPortalMessage").value,staffNote:document.getElementById("editStaffNote").value,caseManagerName:document.getElementById("editCaseManager").value};try{const res=await fetch("/api/admin/update?password="+encodeURIComponent(password),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),data=await res.json();if(!res.ok){alert("Update failed.");return}const index=applications.findIndex(item=>item.id===selectedApplicationId);if(index!==-1)applications[index]=data.application;updateCounts();renderApplications();viewApplication(selectedApplicationId);alert("Application updated successfully.")}catch(error){alert("Could not update application.")}}
 function closeModal(){document.getElementById("applicationModal").style.display="none"}function printApplication(){window.print()}function downloadCSV(){const password=savedPassword||document.getElementById("adminPassword").value.trim();if(!password){alert("Enter your admin password first.");return}window.location.href="/api/submissions.csv?password="+encodeURIComponent(password)}
