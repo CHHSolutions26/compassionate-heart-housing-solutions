@@ -206,20 +206,28 @@ async function updateDocumentStatus(applicationId, documentId, status) {
   }
 }
 
-    await loadApplications();
-
-selectedApplicationId = applicationId;
-viewApplication(applicationId);
-
-alert("Document marked as " + status + ".");
-}
-catch (error) {
-    console.error(error);
-    alert("Document update failed.");
-}
+function closeModal(){
+  document.getElementById("applicationModal").style.display="none"
 }
 
-function closeModal(){document.getElementById("applicationModal").style.display="none"}function printApplication(){window.print()}function downloadCSV(){const password=savedPassword||document.getElementById("adminPassword").value.trim();if(!password){alert("Enter your admin password first.");return}window.location.href="/api/submissions.csv?password="+encodeURIComponent(password)}
+function printApplication() {
+  window.print();
+  }
+
+function downloadCSV() {
+  const password=savedPassword||document.getElementById("adminPassword").value.trim();
+  
+  if(!password){
+    alert("Enter your admin password first.");
+    return;
+  
+  }
+  
+  window.location.href=
+  "/api/submissions.csv?password="+encodeURIComponent(password);
+
+}
+
 </script>
 </body>
 </html>
