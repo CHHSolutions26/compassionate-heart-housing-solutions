@@ -114,6 +114,46 @@ async function checkStatus() {
     result.innerHTML = "<p class='notice'>Could not check application status.</p>";
   }
 }
+async function uploadDocument(applicationId) {
+  const category = document.getElementById("documentCategory").value;
+  const fileInput = document.getElementById("documentFile");
+  const documentsList = document.getElementById("documentsList");
+
+  if (!fileInput.files.length) {
+    alert("Choose a document first.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("applicationId", applicationId);
+  formData.append("category", category);
+  formData.append("documents", fileInput.files[0]);
+
+  try {
+    const res = await fetch("/api/documents/upload", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Upload failed.");
+      return;
+    }
+
+    alert("Document uploaded successfully.");
+    fileInput.value = "";
+
+    documentsList.innerHTML = data.documents.map(doc => `
+      <p><strong>${doc.category}</strong>: ${doc.originalName} — ${doc.status}</p>
+    `).join("");
+
+  } catch (error) {
+    console.error(error);
+    alert("Upload failed.");
+  }
+}
 </script>
 
 </body>
