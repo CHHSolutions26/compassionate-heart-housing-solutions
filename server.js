@@ -80,9 +80,6 @@ async function sendNotification(record) {
 }
 
 app.post('/api/submit', upload.array('documents', 8), async (req, res) => {
-   
-   res.json({ok: true, id: record.id,message: 'Your form was submitted successfully.'
-});
   
   const submissions = getSubmissions();
   const record = {
@@ -180,6 +177,7 @@ app.post('/api/admin/update', express.json(), (req, res) => {
     ok: true,
     message: 'Application updated successfully',
     application: applications[appIndex]
+  });
   });
 app.post('/api/documents/status', express.json(), (req, res) => {
   const { applicationId, documentId, status } = req.body;
