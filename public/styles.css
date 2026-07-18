@@ -741,3 +741,68 @@ footer h3{
     font-size: 17px;
   }
 }
+.success-screen {
+  width: min(720px, 94%);
+  margin: 35px auto;
+}
+
+.success-card {
+  background: #fff;
+  padding: 45px 30px;
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.success-icon {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #2f9e5b;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.application-id-box {
+  margin: 28px 0;
+  padding: 24px 15px;
+  border: 2px dashed #7f5af0;
+  border-radius: 16px;
+  background: #f7f3ff;
+}
+
+.application-id-label {
+  margin-bottom: 10px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+#submittedApplicationId {
+  overflow-wrap: anywhere;
+  color: #0d1f7c;
+  font-size: clamp(23px, 5vw, 34px);
+  font-weight: 800;
+}
+
+.success-card .important {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.success-card .form-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  text-decoration: none;
+}
+
+.success-home-btn {
+  box-sizing: border-box;
+  text-align: center;
+}
