@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Staff Login | Compassionate Heart Housing Solutions</title>
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <main class="staff-login-page">
+
+    <div class="staff-login-card">
+
+      <img
+        src="/images/logo.jpeg"
+        class="staff-login-logo"
+        alt="Compassionate Heart Housing Solutions"
+      >
+
+      <h1>Staff Login</h1>
+
+      <p>
+        Authorized Compassionate Heart Housing Solutions staff only.
+      </p>
+
+      <label for="staffPassword">Admin Password</label>
+
+      <input
+        type="password"
+        id="staffPassword"
+        class="input"
+        placeholder="Enter admin password"
+        autocomplete="current-password"
+      >
+
+      <button
+        type="button"
+        class="form-btn"
+        onclick="staffLogin()"
+      >
+        Sign In
+      </button>
+
+      <div id="staffLoginMessage"></div>
+
+      <a href="/" class="staff-home-link">
+        Return to Home
+      </a>
+
+    </div>
+
+  </main>
+
+  <script>
+    async function staffLogin() {
+      const password = document
+        .getElementById("staffPassword")
+        .value
+        .trim();
+
+      const message = document.getElementById("staffLoginMessage");
+
+      if (!password) {
+        message.innerHTML =
+          '<p class="notice">Enter your admin password.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "/api/submissions?password=" +
+          encodeURIComponent(password)
+        );
+
+        if (!response.ok) {
+          message.innerHTML =
+            '<p class="notice">Incorrect password or access denied.</p>';
+          return;
+        }
+
+        sessionStorage.setItem("chhsAdminPassword", password);
+
+        window.location.href = "/admin";
+
+      } catch (error) {
+        console.error(error);
+
+        message.innerHTML =
+          '<p class="notice">Unable to sign in. Please try again.</p>';
+      }
+    }
+
+    document
+      .getElementById("staffPassword")
+      .addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          staffLogin();
+        }
+      });
+  </script>
+
+</body>
+</html>
