@@ -135,10 +135,55 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await res.json();
 
       if (res.ok) {
-        alert("Application submitted successfully. Your ID is: " + result.id);
-        form.reset();
-        currentStep = 0;
-        showStep(currentStep);
+        const resultBox = document.getElementById("formResult");
+
+form.style.display = "none";
+
+resultBox.innerHTML = `
+  <div class="success-screen">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+
+      <h1>Application Submitted!</h1>
+
+      <p>
+        Thank you for applying to
+        <strong>Compassionate Heart Housing Solutions.</strong>
+      </p>
+
+      <div class="application-id-box">
+        <div class="application-id-label">YOUR APPLICATION ID</div>
+        <div id="submittedApplicationId">${result.id}</div>
+      </div>
+
+      <p class="important">
+        Save this Application ID. You will need it to check your application
+        status and communicate with our staff.
+      </p>
+
+      <button type="button" class="form-btn" id="copyApplicationIdBtn">
+        Copy Application ID
+      </button>
+
+      <a class="form-btn success-home-btn" href="/">
+        Return to Home
+      </a>
+    </div>
+  </div>
+`;
+
+document
+  .getElementById("copyApplicationIdBtn")
+  .addEventListener("click", async function () {
+    try {
+      await navigator.clipboard.writeText(result.id);
+      this.textContent = "Application ID Copied";
+    } catch (error) {
+      alert("Your Application ID is: " + result.id);
+    }
+  });
+
+window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         alert(result.error || "Submission failed.");
       }
