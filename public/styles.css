@@ -888,3 +888,20 @@ footer h3{
 .staff-home-link:hover {
   text-decoration: underline;
 }
+.site-footer {
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 50px;
+}
+
+.staff-login-link {
+  color: #64748b;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.staff-login-link:hover {
+  color: #0d1f7c;
+}
