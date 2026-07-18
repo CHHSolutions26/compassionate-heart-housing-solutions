@@ -671,3 +671,73 @@ footer h3{
   gap: 8px;
   width: auto;
 }
+.housing-info-section {
+  width: min(1100px, 92%);
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.housing-info-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 38px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
+
+.housing-info-card h2 {
+  color: #0d1f7c;
+  text-align: center;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.housing-info-card h3 {
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.housing-info-card p,
+.housing-info-card li {
+  color: #2d3142;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.housing-info-card ul {
+  padding-left: 24px;
+  margin: 24px 0;
+}
+
+.housing-info-card li {
+  margin-bottom: 12px;
+}
+
+.housing-slogan {
+  margin-top: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.payment-sources {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 2px solid #eee7ff;
+}
+
+@media (max-width: 760px) {
+  .housing-info-section {
+    grid-template-columns: 1fr;
+  }
+
+  .housing-info-card {
+    padding: 28px 22px;
+  }
+
+  .housing-info-card p,
+  .housing-info-card li {
+    font-size: 17px;
+  }
+}
