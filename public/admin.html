@@ -42,7 +42,7 @@
 </main>
 <div id="applicationModal" class="modal"><div class="modal-card print-area"><div class="modal-top"><button class="admin-btn secondary small" onclick="closeModal()">Close</button><button class="admin-btn secondary small" onclick="printApplication()">Print</button><button class="admin-btn small" onclick="saveCaseUpdate()">Save Changes</button></div><div id="modalContent"></div></div></div>
 <script>
-let savedPassword="",applications=[],selectedApplicationId="";
+let savedPassword= sessionStorage.getItem("chhsaAdminPassword") || "";
 const statusOptions=["Pending Review","Urgent","Documents Needed","Interview Scheduled","Approved","Waitlisted","Denied","Moved In"];
 function safe(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));}
 function statusClass(status){return "status-"+String(status||"Pending Review").replace(/\s+/g,"-");}
