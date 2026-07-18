@@ -46,7 +46,20 @@ let savedPassword= sessionStorage.getItem("chhsaAdminPassword") || "";
 const statusOptions=["Pending Review","Urgent","Documents Needed","Interview Scheduled","Approved","Waitlisted","Denied","Moved In"];
 function safe(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));}
 function statusClass(status){return "status-"+String(status||"Pending Review").replace(/\s+/g,"-");}
-async function loadApplications(){const password=document.getElementById("adminPassword").value.trim(),message=document.getElementById("adminMessage");if(!password){message.innerHTML="<p class='notice'>Enter your admin password first.</p>";return}savedPassword=password;try{const res=await fetch("/api/submissions?password="+encodeURIComponent(password)+"&v="+Date.now()),data=await res.json();if(!res.ok){message.innerHTML="<p class='notice'>Wrong password or access denied.</p>";return}applications=Array.isArray(data)?data:[];renderApplications();updateCounts();message.innerHTML="<p class='notice'>Applications loaded successfully.</p>"}catch(error){message.innerHTML="<p class='notice'>Could not load applications.</p>"}}
+async function loadApplications() {
+const password=
+savedPassword ||
+document.getElementById("adminPassword").value.trim()|| 
+
+const message=document.getElementById("adminMessage");
+if(!password){message.innerHTML="<p class='notice'>Enter your admin password first.</p>";return
+  
+}
+savedPassword=password;
+sessionStorage.setItem("chhsAdminPassword", password):
+  
+try{
+    const res=await fetch("/api/submissions?password="+encodeURIComponent(password)+"&v="+Date.now()),data=await res.json();if(!res.ok){message.innerHTML="<p class='notice'>Wrong password or access denied.</p>";return}applications=Array.isArray(data)?data:[];renderApplications();updateCounts();message.innerHTML="<p class='notice'>Applications loaded successfully.</p>"}catch(error){message.innerHTML="<p class='notice'>Could not load applications.</p>"}}
 function updateCounts(){document.getElementById("totalCount").textContent=applications.length;document.getElementById("pendingCount").textContent=applications.filter(app=>!app.status||app.status==="Pending Review").length;document.getElementById("urgentCount").textContent=applications.filter(app=>app.status==="Urgent").length;document.getElementById("approvedCount").textContent=applications.filter(app=>app.status==="Approved").length}
 function renderApplications(){const container=document.getElementById("applicationsBody"),search=(document.getElementById("searchBox")?.value||"").toLowerCase(),filter=document.getElementById("statusFilter")?.value||"";let filtered=applications.filter(app=>{const status=app.status||"Pending Review",searchable=[app.fullName,app.phone,app.email,app.housingNeed,status,app.caseManagerName,app.portalMessage,app.staffNote].join(" ").toLowerCase();return searchable.includes(search)&&(!filter||status===filter)});if(!filtered.length){container.innerHTML="<div class='notice'>No matching applications found.</div>";return}container.innerHTML="";filtered.forEach(app=>{const status=app.status||"Pending Review",card=document.createElement("div");card.className="app-card";card.innerHTML=`<div><h3>${safe(app.fullName||"No name")}</h3><div class="app-meta"><strong>ID:</strong> ${safe(app.id||"Not listed")}<br><strong>Submitted:</strong> ${app.submittedAt?new Date(app.submittedAt).toLocaleString():"Not listed"}<br><strong>Housing Need:</strong> ${safe(app.housingNeed||"Not listed")}</div></div><div><span class="status-pill ${statusClass(status)}">${safe(status)}</span><div class="app-meta"><strong>Phone:</strong> ${safe(app.phone||"No phone")}<br><strong>Email:</strong> ${safe(app.email||"No email")}<br><strong>Case Manager:</strong> ${safe(app.caseManagerName||"Not assigned")}</div></div><div><button class="admin-btn small" onclick="viewApplication('${safe(app.id)}')">View / Manage</button></div>`;container.appendChild(card)})}
 function viewApplication(id) {
@@ -135,7 +148,10 @@ const documents = Array.isArray(app.documents) && app.documents.length
 function setStatus(status){const input=document.getElementById("editStatus");if(input)input.value=status;const app=applications.find(item=>item.id===selectedApplicationId);if(app){app.status=status;viewApplication(selectedApplicationId)}}
 async function saveCaseUpdate() {
   try {
-    const password = savedPassword || document.getElementById("adminPassword").value.trim();
+    const password =
+  savedPassword||
+  document.getElementById("adminPassword")?.value.trim() ||
+  "";
     const app = applications.find(item => item.id === selectedApplicationId);
 
     if (!password || !app) {
