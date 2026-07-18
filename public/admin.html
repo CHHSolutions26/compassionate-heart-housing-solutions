@@ -181,6 +181,7 @@ async function saveCaseUpdate() {
 }
 async function updateDocumentStatus(applicationId, documentId, status) {
   try {
+
     const res = await fetch("/api/documents/status", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
